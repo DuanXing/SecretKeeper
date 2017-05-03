@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/duanxing/Documents/University/SecretKeeper/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d05096d4eb8d322ffb00cf6c10b2ad5235b8fb10">
+        <dex dex="/Users/duanxing/Documents/University/SecretKeeper/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9e0314586d0ef08fa1fdf626229010a02fe570b6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/duanxing/Documents/University/SecretKeeper/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c90758229fb29c77957c15e276b0dca8ece4de1d">
+        <dex dex="/Users/duanxing/Documents/University/SecretKeeper/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_3d366d5c7713952350cada0555d70bb8d8f8e330/classes.dex" />
+    </item>
+
+</items>
