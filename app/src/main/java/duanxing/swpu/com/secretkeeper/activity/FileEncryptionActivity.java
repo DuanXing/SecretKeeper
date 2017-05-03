@@ -18,10 +18,10 @@ public class FileEncryptionActivity extends BaseActivity {
     private static final int FILE_SELECT_CODE = 0;
     private static final String TAG = "FileEncryptionActivity";
 
-    private Button select_file; // 选择文件按钮
-    private EditText file_path; // 文件路径展示控件
-    private RadioGroup encrypt_method; // 加密方法
-    private Button start_encrypt; // 开始加密按钮
+    private Button btn_select_file;
+    private EditText etTxt_file_path;
+    private RadioGroup btnGp_encrypt_method;
+    private Button btn_encrypt;
 
     private String selectFilePath;
 
@@ -31,34 +31,34 @@ public class FileEncryptionActivity extends BaseActivity {
     }
 
     @Override
-    protected void findViewById() {
-        select_file = (Button) findViewById(R.id.select_file);
-        file_path = (EditText) findViewById(R.id.file_path);
-        encrypt_method = (RadioGroup) findViewById(R.id.encrypt_method);
-        start_encrypt = (Button) findViewById(R.id.start_encrypt);
+    protected void initSubView() {
+        btn_select_file = (Button) findViewById(R.id.select_file);
+        etTxt_file_path = (EditText) findViewById(R.id.file_path);
+        btnGp_encrypt_method = (RadioGroup) findViewById(R.id.encrypt_method);
+        btn_encrypt = (Button) findViewById(R.id.start_encrypt);
     }
 
     @Override
     protected void setListener() {
 
-        // 选择文件监听
-        select_file.setOnClickListener(new View.OnClickListener() {
+        // the listener to file choose.
+        btn_select_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showFileChooser();
             }
         });
 
-        // 选择加密方法监听
-        encrypt_method.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        // the listener to encryption choose.
+        btnGp_encrypt_method.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
             }
         });
 
-        // 开始加密监听
-        start_encrypt.setOnClickListener(new View.OnClickListener() {
+        // the listener to btn_encrypt.
+        btn_encrypt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -84,7 +84,7 @@ public class FileEncryptionActivity extends BaseActivity {
         if (requestCode == FILE_SELECT_CODE) {
             Uri uri = data.getData();
             if (uri.getPath() != null) {
-                file_path.setText(uri.getPath().toString());
+                etTxt_file_path.setText(uri.getPath().toString());
 
             }
             Log.i(TAG, "------->" + uri.getPath());
@@ -93,16 +93,16 @@ public class FileEncryptionActivity extends BaseActivity {
     }
 
     /**
-     * 弹出选择文件窗口
+     * Pop file choose dialog.
      */
     private void showFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         try {
-            startActivityForResult(Intent.createChooser(intent, "选择文件"), FILE_SELECT_CODE);
+            startActivityForResult(Intent.createChooser(intent, "Choose file"), FILE_SELECT_CODE);
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "亲，木有文件管理器啊-_-!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sorry, there no file manager-_-!!", Toast.LENGTH_SHORT).show();
         }
     }
 }

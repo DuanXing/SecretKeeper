@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void findViewById() {
+    protected void initSubView() {
         grid_secret_keeper = (GridView) findViewById(R.id.grid_secret_keeper);
         initAdapter();
     }
@@ -68,12 +68,12 @@ public class MainActivity extends BaseActivity {
 
     private void initAdapter() {
         secretKeeperIconAdapter = new SecretKeeperIconAdapter(MainActivity.this);
-        icons.add(new MyIcon(R.mipmap.iv_icon_1, "文件加密"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_2, "文件解密"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_3, "便签"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_4, "图标4"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_5, "图标5"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_6, "图标6"));
+        icons.add(new MyIcon(R.mipmap.iv_icon_1, "Encrypt"));
+        icons.add(new MyIcon(R.mipmap.iv_icon_2, "Decrypt"));
+        icons.add(new MyIcon(R.mipmap.iv_icon_3, "Note"));
+        icons.add(new MyIcon(R.mipmap.iv_icon_4, "Icon4"));
+        icons.add(new MyIcon(R.mipmap.iv_icon_5, "Icon5"));
+        icons.add(new MyIcon(R.mipmap.iv_icon_6, "Icon6"));
         secretKeeperIconAdapter.setIcons(icons);
         grid_secret_keeper.setAdapter(secretKeeperIconAdapter);
     }

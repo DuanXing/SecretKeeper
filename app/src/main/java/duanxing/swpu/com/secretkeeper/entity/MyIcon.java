@@ -1,7 +1,7 @@
 package duanxing.swpu.com.secretkeeper.entity;
 
 /**
- * Created by DZP on 2017/5/3.
+ * Created by duanxing on 2017/5/3.
  */
 
 public class MyIcon {

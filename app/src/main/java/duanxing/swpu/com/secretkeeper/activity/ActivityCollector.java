@@ -5,16 +5,16 @@ import android.app.Activity;
 import java.util.LinkedList;
 
 /**
- * Created by DZP on 2017/5/3.
+ * Created by duanxing on 2017/5/3.
  */
 
 public class ActivityCollector {
-    /**存储所有的activity*/
+    /**save all the activities*/
     public static LinkedList<Activity> activities = new LinkedList<Activity>();
 
     /**
-     * 添加当前Activity到管理当中
-     * @param activity 新创建的Activity
+     * add activity
+     * @param activity the new activity
      */
     public static void addActivity(Activity activity)
     {
@@ -22,8 +22,8 @@ public class ActivityCollector {
     }
 
     /**
-     * 将当前Activity被销毁，从管理当中移除
-     * @param activity 被销毁的Activity
+     * remove activity
+     * @param activity the Activity to remove
      */
     public static void removeActivity(Activity activity)
     {
@@ -31,7 +31,7 @@ public class ActivityCollector {
     }
 
     /**
-     * 销毁所有的Activity
+     * destroy all activities
      */
     public static void finishAll()
     {

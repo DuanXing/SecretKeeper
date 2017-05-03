@@ -14,7 +14,7 @@ import duanxing.swpu.com.secretkeeper.R;
 import duanxing.swpu.com.secretkeeper.entity.MyIcon;
 
 /**
- * Created by DZP on 2017/5/3.
+ * Created by duanxing on 2017/5/3.
  */
 
 public class SecretKeeperIconAdapter extends BaseAdapter{

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 /**
- * Created by DZP on 2017/5/3.
+ * Created by duanxing on 2017/5/3.
  */
 
 public abstract class BaseActivity extends Activity  {
@@ -21,32 +21,32 @@ public abstract class BaseActivity extends Activity  {
     }
 
     /**
-     * 初始化所有View
+     * initialize all views
      */
     private void initView() {
         loadViewLayout();
-        findViewById();
+        initSubView();
         setListener();
     }
 
 
     /**
-     *初始化该Activity对应的活动
+     * initialize activity of the view
      */
     protected abstract void loadViewLayout();
 
     /**
-     * 初始化Activity当中的控件
+     * initialize the sub view
      */
-    protected abstract void findViewById();
+    protected abstract void initSubView();
 
     /**
-     * 为控件添加监听事件
+     * initialize listener of the view
      */
     protected abstract void setListener();
 
     /**
-     * 后台读取数据操作
+     * background work
      */
     protected abstract void processLogic();
 
