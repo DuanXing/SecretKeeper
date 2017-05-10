@@ -49,7 +49,7 @@ public class SecretKeeperIconAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_grid_icon, parent, false);
             holder = new ViewHolder();

@@ -36,9 +36,10 @@ public class MainActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int positon, long id) {
                 switch (icons.get(positon).getiId()) {
                     case R.mipmap.iv_icon_1:
-                        enterXxx();
+                        enterActivity(FileEncryptionActivity.class);
                         break;
                     case R.mipmap.iv_icon_2:
+                        enterActivity(FileDecryptionActivity.class);
                         break;
                     case R.mipmap.iv_icon_3:
                         break;
@@ -56,8 +57,8 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void enterXxx() {
-        Intent intent = new Intent(MainActivity.this, FileEncryptionActivity.class);
+    private void enterActivity(Class<?> cls) {
+        Intent intent = new Intent(MainActivity.this, cls);
         startActivity(intent);
     }
 

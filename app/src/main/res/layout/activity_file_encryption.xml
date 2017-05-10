@@ -9,14 +9,15 @@
 
     <Button
         android:id="@+id/select_file"
-        android:text="选择加密文件"
+        android:text="Type to choose file."
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/file_path"
         android:focusable="false"
-        android:hint="选择文件的路径"
+        android:hint="Choose file."
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -26,30 +27,52 @@
         android:layout_height="wrap_content">
 
         <RadioButton
-            android:text="对称加密"
+            android:id="@+id/aesRadioBtn"
+            android:text="AES"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <RadioButton
-            android:text="对称加密"
+            android:id="@+id/desRadioBtn"
+            android:text="DES"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <RadioButton
-            android:text="对称加密"
+            android:id="@+id/desedeRadioBtn"
+            android:text="DESede"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/sm4RadioBtn"
+            android:text="SM4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </RadioGroup>
 
-    <Button
-        android:id="@+id/start_encrypt"
-        android:text="开始加密"
+    <EditText
+        android:id="@+id/outFileName"
+        android:hint="Type to input out file name."
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/txtHint"
+        android:text="
+        Notes:\n
+        1.The out file will be created in the same folder.\n
+        2.If the out file name is null, the name will be the original name connected with the time stamp.\n"
+        android:textColor="#AA0000"
+        android:textSize="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-
-
+    <Button
+        android:id="@+id/start_encrypt"
+        android:text="Encrypt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -5,12 +5,27 @@ package duanxing.swpu.com.secretkeeper.utils;
  */
 
 public abstract class BaseEncryption {
+    // cipher mode.
+    public enum OP_CIPHER_MODE {
+        BASE_ENCRYPT_MODE,
+        BASE_DECRYPT_MODE
+    }
+
     // initial before encrypt
-    public abstract void init();
+    public abstract boolean init();
 
     // encryption
-    public abstract void encrypt();
+    public abstract boolean encrypt(String filePath, String savePath);
 
     // decryption
-    public abstract void decrypt();
+    public abstract boolean decrypt(String filePath, String savePath);
+
+    // the cipher mode.
+    protected OP_CIPHER_MODE cipherMode;
+
+    // tag to the class.
+    protected String TAG = "BASE_ENCRYPTION";
+
+    // is initialized ?
+    protected boolean initialized = false;
 }
