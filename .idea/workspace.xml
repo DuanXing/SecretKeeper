@@ -15,20 +15,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileDecryptionActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileDecryptionActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/AesEncryption.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/AesEncryption.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/BaseEncryption.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/BaseEncryption.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesEncryption.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesEncryption.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesedeEncryption.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesedeEncryption.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/EncryptionHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/EncryptionHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/SM4Encryption.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/SM4Encryption.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_file_decryption.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_file_decryption.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="SecretKeeper.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,56 +45,85 @@
     <favorites_list name="SecretKeeper" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="SM4Encryption.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/SM4Encryption.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1695">
-              <caret line="295" column="12" selection-start-line="295" selection-start-column="12" selection-end-line="295" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6274#6275#0" expanded="true" />
-                <element signature="e#6326#6327#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DesEncryption.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesEncryption.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="128" column="12" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseEncryption.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/BaseEncryption.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AesEncryption.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/AesEncryption.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="BaseEncryption.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/BaseEncryption.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="FileEncryptionActivity.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2910">
+                  <caret line="205" column="52" selection-start-line="205" selection-start-column="52" selection-end-line="205" selection-end-column="52" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#4787#8942#0" expanded="true" />
+                    <element signature="e#5101#5143#0" expanded="true" />
+                    <element signature="e#5993#6038#0" expanded="true" />
+                    <element signature="e#6170#6210#0" expanded="true" />
+                    <element signature="e#6294#8884#0" expanded="true" />
+                    <element signature="e#7799#7851#0" expanded="true" />
+                    <element signature="e#8168#8216#0" expanded="true" />
+                    <element signature="e#8883#8884#0" expanded="true" />
+                    <element signature="e#8941#8942#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="FileDecryptionActivity.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileDecryptionActivity.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2250">
+                  <caret line="185" column="56" selection-start-line="185" selection-start-column="56" selection-end-line="185" selection-end-column="56" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#5255#5295#0" expanded="true" />
+                    <element signature="e#5379#8394#0" expanded="true" />
+                    <element signature="e#7029#7081#0" expanded="true" />
+                    <element signature="e#7469#7517#0" expanded="true" />
+                    <element signature="e#8393#8394#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="CipherHandler.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/CipherHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#777#778#0" expanded="true" />
+                    <element signature="e#815#816#0" expanded="true" />
+                    <element signature="e#990#1046#0" expanded="true" />
+                    <element signature="e#1176#1233#0" expanded="true" />
+                    <element signature="e#1367#1427#0" expanded="true" />
+                    <element signature="e#1556#1612#0" expanded="true" />
+                    <element signature="e#1742#1799#0" expanded="true" />
+                    <element signature="e#1933#1993#0" expanded="true" />
+                    <element signature="e#2128#2182#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1693,20 +1714,21 @@
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/Adapter/SecretKeeperIconAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/FileUtil.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_file_decryption.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/EncryptionHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/SMS4.java" />
         <option value="$USER_HOME$/Library/Android/sdk/sources/android-25/javax/crypto/CipherInputStream.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/BaseEncryption.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesEncryption.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesedeEncryption.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/AesEncryption.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/SM4Encryption.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_file_decryption.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/BaseEncryption.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/EncryptionHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/CipherHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileDecryptionActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java" />
       </list>
     </option>
   </component>
@@ -2316,21 +2338,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/android/widget/GridView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="188" column="16" selection-start-line="188" selection-start-column="16" selection-end-line="188" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/android/widget/BaseAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2526,23 +2533,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_file_decryption.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
-          <folding>
-            <element signature="e#482#502#0" expanded="true" />
-            <element signature="e#741#758#0" expanded="true" />
-            <element signature="e#925#949#0" expanded="true" />
-            <element signature="e#1550#1567#0" expanded="true" />
-            <element signature="e#1734#1751#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_grid_icon.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -2676,27 +2666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/EncryptionHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesedeEncryption.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -2717,20 +2686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileDecryptionActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesEncryption.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1875">
-          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+        <state relative-caret-position="180">
+          <caret line="128" column="12" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2749,21 +2708,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DesEncryption.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="128" column="12" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="589">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_file_decryption.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/BaseEncryption.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/android/os/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="38" column="15" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/EncryptionHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/CipherHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#777#778#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#990#1046#0" expanded="true" />
+            <element signature="e#1176#1233#0" expanded="true" />
+            <element signature="e#1367#1427#0" expanded="true" />
+            <element signature="e#1556#1612#0" expanded="true" />
+            <element signature="e#1742#1799#0" expanded="true" />
+            <element signature="e#1933#1993#0" expanded="true" />
+            <element signature="e#2128#2182#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileDecryptionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="185" column="56" selection-start-line="185" selection-start-column="56" selection-end-line="185" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5255#5295#0" expanded="true" />
+            <element signature="e#5379#8394#0" expanded="true" />
+            <element signature="e#7029#7081#0" expanded="true" />
+            <element signature="e#7469#7517#0" expanded="true" />
+            <element signature="e#8393#8394#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2910">
+          <caret line="205" column="52" selection-start-line="205" selection-start-column="52" selection-end-line="205" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4787#8942#0" expanded="true" />
+            <element signature="e#5101#5143#0" expanded="true" />
+            <element signature="e#5993#6038#0" expanded="true" />
+            <element signature="e#6170#6210#0" expanded="true" />
+            <element signature="e#6294#8884#0" expanded="true" />
+            <element signature="e#7799#7851#0" expanded="true" />
+            <element signature="e#8168#8216#0" expanded="true" />
+            <element signature="e#8883#8884#0" expanded="true" />
+            <element signature="e#8941#8942#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

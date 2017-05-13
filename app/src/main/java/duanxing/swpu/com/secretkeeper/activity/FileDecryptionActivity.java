@@ -3,16 +3,19 @@ package duanxing.swpu.com.secretkeeper.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import duanxing.swpu.com.secretkeeper.R;
 import duanxing.swpu.com.secretkeeper.utils.AesEncryption;
 import duanxing.swpu.com.secretkeeper.utils.BaseEncryption;
+import duanxing.swpu.com.secretkeeper.utils.CipherHandler;
 import duanxing.swpu.com.secretkeeper.utils.DesEncryption;
 import duanxing.swpu.com.secretkeeper.utils.DesedeEncryption;
 import duanxing.swpu.com.secretkeeper.utils.EncryptionHelper;
@@ -33,6 +36,7 @@ public class FileDecryptionActivity extends BaseActivity {
     private Button btn_decrypt;
     private EditText etTxt_out_name;
     private TextView txtView_encryption_hint;
+    private ProgressBar progressBar;
 
     // default encryption
     private ENCRYPTION_METHOD encrypt_method = ENCRYPTION_METHOD.AES_ENCRYPT;
@@ -41,6 +45,32 @@ public class FileDecryptionActivity extends BaseActivity {
     private static final String TAG = "FileDecryptionActivity";
 
     private String selectFilePath;
+    private String savePath;
+
+    private CipherHandler mHandler = new CipherHandler(this);
+    private Message mMsg = new Message();
+//    // deal the message of thread.
+//    private Handler mHandler = new Handler() {
+//        @Override
+//        public void handleMessage(Message message) {
+//            switch (message.what) {
+//                case MSG_DECRYPT_FAILED:
+//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptFailed), Toast.LENGTH_LONG).show();
+//                    break;
+//                case MSG_DECRYPT_SUCCESS:
+//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptSuccess), Toast.LENGTH_LONG).show();
+//                    break;
+//                case MSG_DECRYPT_INIT_FAILED:
+//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptInitFailed), Toast.LENGTH_LONG).show();
+//                    break;
+//                case MSG_DECRYPT_INVALID_FILE:
+//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.invalidFile) + selectFilePath.substring(selectFilePath.lastIndexOf('/')+1), Toast.LENGTH_LONG).show();
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    };
 
     @Override
     protected void loadViewLayout() {
@@ -54,6 +84,7 @@ public class FileDecryptionActivity extends BaseActivity {
         etTxt_file_path = (EditText) findViewById(R.id.file_path);
         btn_decrypt = (Button) findViewById(R.id.start_decrypt);
         txtView_encryption_hint = (TextView) findViewById(R.id.encryptHint);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
@@ -79,7 +110,7 @@ public class FileDecryptionActivity extends BaseActivity {
 
                 // get the savePath.
                 int index = selectFilePath.lastIndexOf('/');
-                String savePath = selectFilePath.substring(0, index+1);
+                savePath = selectFilePath.substring(0, index+1);
                 String fileName = selectFilePath.substring(index+1);
                 String outName = etTxt_out_name.getText().toString();
                 if(!"".equals(outName)) {
@@ -97,52 +128,67 @@ public class FileDecryptionActivity extends BaseActivity {
                     return;
                 }
 
-                // make the decryption
-                BaseEncryption decryption = null;
-                switch (encrypt_method) {
-                    case AES_ENCRYPT:
-                        decryption = new AesEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
-                        break;
-                    case DES_ENCRYPT:
-                        decryption = new DesEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
-                        break;
-                    case DESEDE_ENCRYPT:
-                        decryption = new DesedeEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
-                        break;
-                    case SM4_ENCRYPT:
-                        decryption = new SM4Encryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
-                        break;
-                    case NONE:
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.invalidFile) + fileName, Toast.LENGTH_LONG).show();
-                        return;
-                    default:
-                        break;
-                }
-
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.begin) + fileName, Toast.LENGTH_LONG).show();
 
-                // decrypt
-                if(null != decryption) {
-                    if(!decryption.init()) {
-                        Log.e(TAG, getResources().getString(R.string.decryptInitFailed));
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptInitFailed), Toast.LENGTH_LONG).show();
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // make the decryption
+                        BaseEncryption decryption = null;
+                        switch (encrypt_method) {
+                            case AES_ENCRYPT:
+                                decryption = new AesEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
+                                break;
+                            case DES_ENCRYPT:
+                                decryption = new DesEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
+                                break;
+                            case DESEDE_ENCRYPT:
+                                decryption = new DesedeEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
+                                break;
+                            case SM4_ENCRYPT:
+                                decryption = new SM4Encryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
+                                break;
+                            case NONE:
+                                mMsg.what = CipherHandler.MSG_DECRYPT_INVALID_FILE;
+                                mHandler.sendMessage(mMsg);
+                                return;
+                            default:
+                                break;
+                        }
 
-                        return;
-                    }
+                        // decrypt
+                        if(null != decryption) {
+                            if(!decryption.init()) {
+                                Log.e(TAG, getResources().getString(R.string.decryptInitFailed));
+                                Message message = new Message();
+                                message.what = CipherHandler.MSG_DECRYPT_INIT_FAILED;
+                                mHandler.sendMessage(message);
 
-                    if(!decryption.doFinal()) {
-                        Log.e(TAG, getResources().getString(R.string.decryptFailed));
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptFailed), Toast.LENGTH_LONG).show();
+                                return;
+                            }
 
-                        return;
+                            if(!decryption.doFinal()) {
+                                Log.e(TAG, getResources().getString(R.string.decryptFailed));
+                                Message message = new Message();
+                                message.what = CipherHandler.MSG_DECRYPT_FAILED;
+                                mHandler.sendMessage(message);
+
+                                return;
+                            }
+                            else {
+                                Message message = new Message();
+                                message.what = CipherHandler.MSG_DECRYPT_SUCCESS;
+                                mHandler.sendMessage(message);
+                            }
+                        }
+                        else {
+                            Message message = new Message();
+                            message.what = CipherHandler.MSG_DECRYPT_FAILED;
+                            mHandler.sendMessage(message);
+                        }
                     }
-                    else {
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptSuccess), Toast.LENGTH_LONG).show();
-                    }
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptFailed), Toast.LENGTH_LONG).show();
-                }
+                });
+                thread.start();
             }
         });
     }

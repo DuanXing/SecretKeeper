@@ -42,9 +42,9 @@ public class EncryptionHelper {
             strFileHeader = new String(fileHeader);
 
             inFile.close();
-            Log.i("EncryptionHelper", "fileHeaderLen:" + fileHeader.length);
-            Log.i("EncryptionHelper", "fileHeader:" + fileHeader);
-            Log.i("EncryptionHelper", "fileHeader:" + strFileHeader);
+//            Log.i("EncryptionHelper", "fileHeaderLen:" + fileHeader.length);
+//            Log.i("EncryptionHelper", "fileHeader:" + fileHeader);
+//            Log.i("EncryptionHelper", "fileHeader:" + strFileHeader);
         }
         catch (Exception e) {
             Log.e("EncryptionHelper", "File not found.");
