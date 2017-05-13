@@ -26,9 +26,11 @@ public class DesedeEncryption extends BaseEncryption{
     private Cipher desedeCipher;
 
     // construction.
-    public DesedeEncryption(OP_CIPHER_MODE mode) {
+    public DesedeEncryption(String src, String dest, OP_CIPHER_MODE mode) {
         this.cipherMode = mode;
         this.TAG = "DESEDE_ENCRYPTION";
+        this.srcFilePath = src;
+        this.saveFilePath = dest;
     }
 
     @Override
@@ -68,7 +70,7 @@ public class DesedeEncryption extends BaseEncryption{
     }
 
     @Override
-    public boolean encrypt(String filePath, String savePath) {
+    protected boolean encrypt() {
         if(!initialized) {
             Log.i(TAG, "Not initialized.");
             return false;
@@ -80,32 +82,21 @@ public class DesedeEncryption extends BaseEncryption{
         }
 
         try {
-            return encrypt(new FileInputStream(filePath), savePath);
-        }
-        catch (FileNotFoundException e) {
-            Log.e(TAG, "FileNotFoundException");
-            e.printStackTrace();
-        }
+            InputStream inFile = new FileInputStream(srcFilePath);
+            if(null == inFile) {
+                Log.e(TAG, "no inputStream.");
+                return false;
+            }
 
-        return false;
-    }
-
-    public boolean encrypt(InputStream inFile, String savePath) {
-        if(null == inFile) {
-            Log.e(TAG, "no inputStream.");
-            return false;
-        }
-
-        CipherInputStream cipherIn = new CipherInputStream(inFile, desedeCipher);
-        try {
-            OutputStream outFile = new FileOutputStream(savePath);
+            CipherInputStream cipherIn = new CipherInputStream(inFile, desedeCipher);
+            OutputStream outFile = new FileOutputStream(saveFilePath);
 
             // first, write the file header.
-            byte[] fileHeader = EncryptionHelper.DES_FILE_HEADER.getBytes();
+            byte[] fileHeader = EncryptionHelper.DESEDE_FILE_HEADER.getBytes();
             outFile.write(fileHeader, 0, EncryptionHelper.fileHeaderLen);
 
             // write the encrypted data.
-            byte[] fileCache = new byte[1024];
+            byte[] fileCache = new byte[CACHE_SIZE];
             int len;
             while ((len = cipherIn.read(fileCache)) > 0) {
                 outFile.write(fileCache, 0, len);
@@ -136,7 +127,7 @@ public class DesedeEncryption extends BaseEncryption{
     }
 
     @Override
-    public boolean decrypt(String filePath, String savePath) {
+    protected boolean decrypt() {
         if(!initialized) {
             Log.i(TAG, "Not initialized.");
             return false;
@@ -148,34 +139,18 @@ public class DesedeEncryption extends BaseEncryption{
         }
 
         try {
-            return decrypt(new FileInputStream(filePath), savePath);
-        }
-        catch (FileNotFoundException e) {
-            Log.e(TAG, "FileNotFoundException");
-            e.printStackTrace();
-        }
+            InputStream inFile = new FileInputStream(srcFilePath);
+            if(null == inFile) {
+                Log.e(TAG, "no inputStream.");
+                return false;
+            }
 
-        return false;
-    }
-
-    public boolean decrypt(InputStream inFile, String savePath) {
-        if(null == inFile) {
-            Log.e(TAG, "no inputStream.");
-            return false;
-        }
-
-        // skip the file header.
-        try {
+            // skip the file header.
             inFile.skip(EncryptionHelper.fileHeaderLen);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        CipherInputStream cipherIn = new CipherInputStream(inFile, desedeCipher);
-        try {
-            OutputStream outFile = new FileOutputStream(savePath);
-            byte[] fileCache = new byte[1024];
+            CipherInputStream cipherIn = new CipherInputStream(inFile, desedeCipher);
+            OutputStream outFile = new FileOutputStream(saveFilePath);
+            byte[] fileCache = new byte[CACHE_SIZE];
             int len;
             while ((len = cipherIn.read(fileCache)) > 0) {
                 outFile.write(fileCache, 0, len);

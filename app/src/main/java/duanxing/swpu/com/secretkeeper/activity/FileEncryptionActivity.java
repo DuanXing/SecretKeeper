@@ -17,13 +17,15 @@ import duanxing.swpu.com.secretkeeper.utils.BaseEncryption;
 import duanxing.swpu.com.secretkeeper.utils.DesEncryption;
 import duanxing.swpu.com.secretkeeper.utils.DesedeEncryption;
 import duanxing.swpu.com.secretkeeper.utils.FileUtil;
+import duanxing.swpu.com.secretkeeper.utils.SM4Encryption;
 
 public class FileEncryptionActivity extends BaseActivity {
     public enum ENCRYPTION_METHOD {
         AES_ENCRYPT,
         DES_ENCRYPT,
         DESEDE_ENCRYPT,
-        SM4_ENCRYPT
+        SM4_ENCRYPT,
+        NONE
     }
 
     // default encryption
@@ -83,8 +85,11 @@ public class FileEncryptionActivity extends BaseActivity {
                 else if("DESede".equals(encryptM)) {
                     encrypt_method = ENCRYPTION_METHOD.DESEDE_ENCRYPT;
                 }
-                else {
+                else if("SM4".equals(encryptM)){
                     encrypt_method = ENCRYPTION_METHOD.SM4_ENCRYPT;
+                }
+                else {
+                    encrypt_method = ENCRYPTION_METHOD.NONE;
                 }
             }
         });
@@ -96,7 +101,7 @@ public class FileEncryptionActivity extends BaseActivity {
                 // get the source file
                 selectFilePath = etTxt_file_path.getText().toString();
                 if("".equals(selectFilePath)) {
-                    Toast.makeText(getApplicationContext(), "No input file.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.noInput), Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -116,25 +121,28 @@ public class FileEncryptionActivity extends BaseActivity {
                 // is the save path valid ?
                 boolean pathInvalid = FileUtil.fileExists(savePath);
                 if(pathInvalid) {
-                    Toast.makeText(getApplicationContext(), "The out file is existed.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.fileExists), Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                Toast.makeText(getApplicationContext(), "Start to encrypt " + fileName, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.begin) + fileName, Toast.LENGTH_LONG).show();
 
                 // make the encryption
                 BaseEncryption encryption = null;
                 switch (encrypt_method) {
                     case AES_ENCRYPT:
-                        encryption = new AesEncryption(BaseEncryption.OP_CIPHER_MODE.BASE_ENCRYPT_MODE);
+                        encryption = new AesEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_ENCRYPT_MODE);
                         break;
                     case DES_ENCRYPT:
-                        encryption = new DesEncryption(BaseEncryption.OP_CIPHER_MODE.BASE_ENCRYPT_MODE);
+                        encryption = new DesEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_ENCRYPT_MODE);
                         break;
                     case DESEDE_ENCRYPT:
-                        encryption = new DesedeEncryption(BaseEncryption.OP_CIPHER_MODE.BASE_ENCRYPT_MODE);
+                        encryption = new DesedeEncryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_ENCRYPT_MODE);
                         break;
                     case SM4_ENCRYPT:
+                        encryption = new SM4Encryption(selectFilePath, savePath, BaseEncryption.OP_CIPHER_MODE.BASE_ENCRYPT_MODE);
+                        break;
+                    case NONE:
                         break;
                     default:
                         break;
@@ -143,21 +151,24 @@ public class FileEncryptionActivity extends BaseActivity {
                 // encrypt
                 if(null != encryption) {
                     if(!encryption.init()) {
-                        Log.e(TAG, "Encryption method init failed.");
-                        Toast.makeText(getApplicationContext(), "Encryption method init failed.", Toast.LENGTH_LONG).show();
+                        Log.e(TAG, getResources().getString(R.string.encryptInitFailed));
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptInitFailed), Toast.LENGTH_LONG).show();
 
                         return;
                     }
 
-                    if(!encryption.encrypt(selectFilePath, savePath)) {
-                        Log.e(TAG, "Encrypt failed.");
-                        Toast.makeText(getApplicationContext(), "Encrypt failed.", Toast.LENGTH_LONG).show();
+                    if(!encryption.doFinal()) {
+                        Log.e(TAG, getResources().getString(R.string.encryptFailed));
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptFailed), Toast.LENGTH_LONG).show();
 
                         return;
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "Encrypt success.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptSuccess), Toast.LENGTH_LONG).show();
                     }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptFailed), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -198,9 +209,9 @@ public class FileEncryptionActivity extends BaseActivity {
         intent.setType("*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         try {
-            startActivityForResult(Intent.createChooser(intent, "Choose file"), FILE_SELECT_CODE);
+            startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.chooseFile)), FILE_SELECT_CODE);
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "Sorry, no file manager-_-!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.noFileManager), Toast.LENGTH_SHORT).show();
         }
     }
 }

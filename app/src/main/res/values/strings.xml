@@ -1,3 +1,27 @@
 <resources>
-    <string name="app_name">SecretKeeper</string>
+    <string name="app_name">文件加密</string>
+    <string name="typeChoose">点击选择文件</string>
+    <string name="srcFile">未选择文件</string>
+    <string name="encrypt_method">加密方式: 未识别</string>
+    <string name="outFile">点击输入文件名</string>
+    <string name="decrypt">解密</string>
+    <string name="encrypt">加密</string>
+    <string name="noInput">未选择文件</string>
+    <string name="fileExists">输入的文件名已存在</string>
+    <string name="begin">开始处理:</string>
+    <string name="encryptSuccess">加密成功</string>
+    <string name="encryptFailed">加密失败</string>
+    <string name="encryptInitFailed">加密算法初始化失败.</string>
+    <string name="decryptSuccess">解密成功</string>
+    <string name="decryptFailed">解密失败</string>
+    <string name="decryptInitFailed">解密算法初始化失败.</string>
+    <string name="chooseFile">选择文件</string>
+    <string name="noFileManager">未发现文件管理器.</string>
+    <string name="encrypt_method_aes">加密方式: AES</string>
+    <string name="encrypt_method_des">加密方式: DES</string>
+    <string name="encrypt_method_desede">加密方式: DESede</string>
+    <string name="encrypt_method_sm4">加密方式: SM4</string>
+    <string name="encrypt_method_none">加密方式: 无法识别</string>
+    <string name="note">备忘录</string>
+    <string name="invalidFile">该文件非该软件加密！</string>
 </resources>

@@ -69,9 +69,9 @@ public class MainActivity extends BaseActivity {
 
     private void initAdapter() {
         secretKeeperIconAdapter = new SecretKeeperIconAdapter(MainActivity.this);
-        icons.add(new MyIcon(R.mipmap.iv_icon_1, "Encrypt"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_2, "Decrypt"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_3, "Note"));
+        icons.add(new MyIcon(R.mipmap.iv_icon_1, getResources().getString(R.string.encrypt)));
+        icons.add(new MyIcon(R.mipmap.iv_icon_2, getResources().getString(R.string.decrypt)));
+        icons.add(new MyIcon(R.mipmap.iv_icon_3, getResources().getString(R.string.note)));
         icons.add(new MyIcon(R.mipmap.iv_icon_4, "Icon4"));
         icons.add(new MyIcon(R.mipmap.iv_icon_5, "Icon5"));
         icons.add(new MyIcon(R.mipmap.iv_icon_6, "Icon6"));
