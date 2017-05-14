@@ -59,4 +59,11 @@
     <string name="calculate">计算MD5</string>
     <string name="mad5Hint">计算结果点击可复制:</string>
     <string name="calculating">正在计算...</string>
+
+    <!-- Note -->
+    <string name="add">添加</string>
+    <string name="delete">删除</string>
+    <string name="save">保存</string>
+    <string name="title">标题</string>
+    <string name="content">内容</string>
 </resources>

@@ -13,9 +13,26 @@ import java.io.File;
  */
 public class DatabaseHelper {
     public static final String dbPath = "/data/secretKeeper/secret.db";
+    public static boolean isConnectDb = false;
+    private static boolean hasDbfile = false;
+    private static DatabaseHelper instance = null;
+
+    // private construction
+    private DatabaseHelper() {
+
+    }
+
+    // singleton
+    private static DatabaseHelper getInstance() {
+        if(null == instance) {
+            instance = new DatabaseHelper();
+        }
+
+        return instance;
+    }
 
     /**
-     * 检测数据库db文件是否存在，判断是否使用过秘密记
+     * the db file exists ?
      * @return
      */
     public static boolean hasNote() {
@@ -29,6 +46,35 @@ public class DatabaseHelper {
             return false;
         }
 
+        hasDbfile = true;
         return true;
+    }
+
+    /**
+     * Initialize db if need and establish connect.
+     */
+    private static void initDb() {
+
+    }
+
+    /**
+     * connect the db
+     */
+    public static void openDb() {
+
+    }
+
+    /**
+     * close the db connection
+     */
+    public static void closeDb() {
+
+    }
+
+    /**
+     * execute sql
+     */
+    public static void execSQL(String sql) {
+
     }
 }

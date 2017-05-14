@@ -33,7 +33,9 @@
             android:label="@string/title_activity_note_login" />
         <activity android:name=".activity.NoteLoginActivity" />
         <activity android:name=".activity.NoteFirstLoginActivity" />
-        <activity android:name=".activity.MD5CalculateActivity"></activity>
+        <activity android:name=".activity.MD5CalculateActivity" />
+        <activity android:name=".activity.NoteListActivity" />
+        <activity android:name=".activity.NoteEditActivity"></activity>
     </application>
 
 </manifest>
