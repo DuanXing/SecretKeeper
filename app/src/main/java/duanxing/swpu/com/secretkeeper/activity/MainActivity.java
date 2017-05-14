@@ -57,6 +57,8 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.mipmap.iv_icon_6:
                         break;
+                    default:
+                        break;
                 }
             }
         });

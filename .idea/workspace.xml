@@ -7,25 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04e7813a-a23a-4aa4-951f-50c99ae8de1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/CipherHandler.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileDecryptionActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileDecryptionActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/FileEncryptionActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/EncryptionHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/EncryptionHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_file_decryption.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_file_decryption.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="SecretKeeper.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,15 +36,15 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="53" column="63" selection-start-line="53" selection-start-column="63" selection-end-line="53" selection-end-column="63" />
+            <state relative-caret-position="600">
+              <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
               <folding>
-                <element signature="e#2593#2635#0" expanded="true" />
-                <element signature="e#2688#2730#0" expanded="true" />
-                <element signature="e#2783#2822#0" expanded="true" />
-                <element signature="e#2875#2914#0" expanded="true" />
-                <element signature="e#2967#3017#0" expanded="true" />
-                <element signature="e#3070#3110#0" expanded="true" />
+                <element signature="e#2653#2695#0" expanded="true" />
+                <element signature="e#2748#2790#0" expanded="true" />
+                <element signature="e#2843#2882#0" expanded="true" />
+                <element signature="e#2935#2974#0" expanded="true" />
+                <element signature="e#3027#3077#0" expanded="true" />
+                <element signature="e#3130#3170#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,8 +53,8 @@
       <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="664">
-              <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
+            <state relative-caret-position="525">
+              <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -1687,12 +1669,12 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_note_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_note_first_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/DatabaseHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/utils/Md5Calculate.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_file_encryption.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_md5_calculate.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MD5CalculateActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2300,27 +2282,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/java/security/Key.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="102" column="17" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/javax/crypto/spec/SecretKeySpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
@@ -2808,23 +2774,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
+        <state relative-caret-position="525">
+          <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/iv_icon_4.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/iv_icon_5.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/duanxing/swpu/com/secretkeeper/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="53" column="63" selection-start-line="53" selection-start-column="63" selection-end-line="53" selection-end-column="63" />
+        <state relative-caret-position="600">
+          <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
           <folding>
-            <element signature="e#2593#2635#0" expanded="true" />
-            <element signature="e#2688#2730#0" expanded="true" />
-            <element signature="e#2783#2822#0" expanded="true" />
-            <element signature="e#2875#2914#0" expanded="true" />
-            <element signature="e#2967#3017#0" expanded="true" />
-            <element signature="e#3070#3110#0" expanded="true" />
+            <element signature="e#2653#2695#0" expanded="true" />
+            <element signature="e#2748#2790#0" expanded="true" />
+            <element signature="e#2843#2882#0" expanded="true" />
+            <element signature="e#2935#2974#0" expanded="true" />
+            <element signature="e#3027#3077#0" expanded="true" />
+            <element signature="e#3130#3170#0" expanded="true" />
           </folding>
         </state>
       </provider>
