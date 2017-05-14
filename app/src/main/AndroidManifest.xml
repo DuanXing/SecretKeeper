@@ -8,6 +8,11 @@
 
     <permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +27,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.FileEncryptionActivity" />
-        <activity android:name=".activity.FileDecryptionActivity"></activity>
+        <activity android:name=".activity.FileDecryptionActivity" />
+        <activity
+            android:name=".NoteLoginActivity"
+            android:label="@string/title_activity_note_login" />
+        <activity android:name=".activity.NoteLoginActivity" />
+        <activity android:name=".activity.NoteFirstLoginActivity" />
+        <activity android:name=".activity.MD5CalculateActivity"></activity>
     </application>
 
 </manifest>

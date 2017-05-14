@@ -3,6 +3,7 @@ package duanxing.swpu.com.secretkeeper.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
@@ -16,9 +17,9 @@ import android.widget.Toast;
 import duanxing.swpu.com.secretkeeper.R;
 import duanxing.swpu.com.secretkeeper.utils.AesEncryption;
 import duanxing.swpu.com.secretkeeper.utils.BaseEncryption;
-import duanxing.swpu.com.secretkeeper.utils.CipherHandler;
 import duanxing.swpu.com.secretkeeper.utils.DesEncryption;
 import duanxing.swpu.com.secretkeeper.utils.DesedeEncryption;
+import duanxing.swpu.com.secretkeeper.utils.EncryptionHelper;
 import duanxing.swpu.com.secretkeeper.utils.FileUtil;
 import duanxing.swpu.com.secretkeeper.utils.SM4Encryption;
 
@@ -30,6 +31,13 @@ public class FileEncryptionActivity extends BaseActivity {
         SM4_ENCRYPT,
         NONE
     }
+
+    // message what value
+    private static final int MSG_ENCRYPT_FAILED = 0;
+    private static final int MSG_ENCRYPT_SUCCESS = 1;
+    private static final int MSG_ENCRYPT_INIT_FAILED = 2;
+    private static final int MSG_ENCRYPT_BUSY = 3;
+    private static final int MSG_ENCRYPT_FREE = 4;
 
     // default encryption
     private ENCRYPTION_METHOD encrypt_method = ENCRYPTION_METHOD.AES_ENCRYPT;
@@ -45,30 +53,41 @@ public class FileEncryptionActivity extends BaseActivity {
     private EditText txtView_out_name;
     private ProgressBar progressBar;
 
+    // string path
     private String selectFilePath;
     private String savePath;
 
-    private CipherHandler mHandler = new CipherHandler(this);
-    private Message mMsg = new Message();
-//    // deal the message of thread.
-//    private Handler mHandler = new Handler() {
-//        @Override
-//        public void handleMessage(Message message) {
-//            switch (message.what) {
-//                case MSG_ENCRYPT_FAILED:
-//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptFailed), Toast.LENGTH_LONG).show();
-//                    break;
-//                case MSG_ENCRYPT_SUCCESS:
-//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptSuccess), Toast.LENGTH_LONG).show();
-//                    break;
-//                case MSG_ENCRYPT_INIT_FAILED:
-//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptInitFailed), Toast.LENGTH_LONG).show();
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//    };
+    // deal the message of thread.
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message message) {
+            switch (message.what) {
+                case MSG_ENCRYPT_FAILED:
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptFailed), Toast.LENGTH_LONG).show();
+                    break;
+                case MSG_ENCRYPT_SUCCESS:
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptSuccess), Toast.LENGTH_LONG).show();
+                    break;
+                case MSG_ENCRYPT_INIT_FAILED:
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptInitFailed), Toast.LENGTH_LONG).show();
+                    break;
+                case MSG_ENCRYPT_BUSY:
+                    EncryptionHelper.encryptState = true;
+                    progressBar.setAlpha(1);
+                    btn_encrypt.setEnabled(false);
+                    btn_encrypt.setText(getResources().getString(R.string.encrypting));
+                    break;
+                case MSG_ENCRYPT_FREE:
+                    EncryptionHelper.encryptState = false;
+                    progressBar.setAlpha(0);
+                    btn_encrypt.setEnabled(true);
+                    btn_encrypt.setText(getResources().getString(R.string.encrypt));
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void loadViewLayout() {
@@ -85,6 +104,13 @@ public class FileEncryptionActivity extends BaseActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnDefault_checked = (RadioButton) findViewById(R.id.aesRadioBtn);
         btnDefault_checked.setChecked(true);
+        progressBar.setAlpha(0);
+
+        if(EncryptionHelper.encryptState) {
+            progressBar.setAlpha(1);
+            btn_encrypt.setEnabled(false);
+            btn_encrypt.setText(getResources().getString(R.string.encrypting));
+        }
     }
 
     @Override
@@ -158,6 +184,11 @@ public class FileEncryptionActivity extends BaseActivity {
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        // make button un clickable
+                        Message mMsg = Message.obtain();
+                        mMsg.what = MSG_ENCRYPT_BUSY;
+                        mHandler.sendMessage(mMsg);
+
                         // make the encryption
                         BaseEncryption encryption = null;
                         switch (encrypt_method) {
@@ -183,7 +214,12 @@ public class FileEncryptionActivity extends BaseActivity {
                         if(null != encryption) {
                             if(!encryption.init()) {
                                 Log.e(TAG, getResources().getString(R.string.encryptInitFailed));
-                                mMsg.what = CipherHandler.MSG_ENCRYPT_INIT_FAILED;
+                                mMsg = Message.obtain();
+                                mMsg.what = MSG_ENCRYPT_INIT_FAILED;
+                                mHandler.sendMessage(mMsg);
+
+                                mMsg = Message.obtain();
+                                mMsg.what = MSG_ENCRYPT_FREE;
                                 mHandler.sendMessage(mMsg);
 
                                 return;
@@ -191,20 +227,26 @@ public class FileEncryptionActivity extends BaseActivity {
 
                             if(!encryption.doFinal()) {
                                 Log.e(TAG, getResources().getString(R.string.encryptFailed));
-                                mMsg.what = CipherHandler.MSG_ENCRYPT_FAILED;
+                                mMsg = Message.obtain();
+                                mMsg.what = MSG_ENCRYPT_FAILED;
                                 mHandler.sendMessage(mMsg);
-
-                                return;
                             }
                             else {
-                                mMsg.what = CipherHandler.MSG_ENCRYPT_SUCCESS;
+                                mMsg = Message.obtain();
+                                mMsg.what = MSG_ENCRYPT_SUCCESS;
                                 mHandler.sendMessage(mMsg);
                             }
+
                         }
                         else {
-                            mMsg.what = CipherHandler.MSG_ENCRYPT_FAILED;
+                            mMsg = Message.obtain();
+                            mMsg.what = MSG_ENCRYPT_FAILED;
                             mHandler.sendMessage(mMsg);
                         }
+
+                        mMsg = Message.obtain();
+                        mMsg.what = MSG_ENCRYPT_FREE;
+                        mHandler.sendMessage(mMsg);
                     }
                 });
                 thread.start();
@@ -249,6 +291,13 @@ public class FileEncryptionActivity extends BaseActivity {
             startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.chooseFile)), FILE_SELECT_CODE);
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(this, getResources().getString(R.string.noFileManager), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!EncryptionHelper.encryptState) {
+            super.onBackPressed();
         }
     }
 }

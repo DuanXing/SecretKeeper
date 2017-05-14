@@ -11,6 +11,7 @@ import java.util.List;
 import duanxing.swpu.com.secretkeeper.Adapter.SecretKeeperIconAdapter;
 import duanxing.swpu.com.secretkeeper.R;
 import duanxing.swpu.com.secretkeeper.entity.MyIcon;
+import duanxing.swpu.com.secretkeeper.utils.DatabaseHelper;
 
 public class MainActivity extends BaseActivity {
 
@@ -42,14 +43,20 @@ public class MainActivity extends BaseActivity {
                         enterActivity(FileDecryptionActivity.class);
                         break;
                     case R.mipmap.iv_icon_3:
+                        if(DatabaseHelper.hasNote()) {
+                            enterActivity(NoteLoginActivity.class);
+                        }
+                        else {
+                            enterActivity(NoteFirstLoginActivity.class);
+                        }
                         break;
                     case R.mipmap.iv_icon_4:
+                        enterActivity(MD5CalculateActivity.class);
                         break;
                     case R.mipmap.iv_icon_5:
                         break;
                     case R.mipmap.iv_icon_6:
                         break;
-
                 }
             }
         });
@@ -72,9 +79,9 @@ public class MainActivity extends BaseActivity {
         icons.add(new MyIcon(R.mipmap.iv_icon_1, getResources().getString(R.string.encrypt)));
         icons.add(new MyIcon(R.mipmap.iv_icon_2, getResources().getString(R.string.decrypt)));
         icons.add(new MyIcon(R.mipmap.iv_icon_3, getResources().getString(R.string.note)));
-        icons.add(new MyIcon(R.mipmap.iv_icon_4, "Icon4"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_5, "Icon5"));
-        icons.add(new MyIcon(R.mipmap.iv_icon_6, "Icon6"));
+        icons.add(new MyIcon(R.mipmap.iv_icon_4, getResources().getString(R.string.hash)));
+        icons.add(new MyIcon(R.mipmap.iv_icon_5, getResources().getString(R.string.aboutEncryption)));
+        icons.add(new MyIcon(R.mipmap.iv_icon_6, getResources().getString(R.string.about)));
         secretKeeperIconAdapter.setIcons(icons);
         grid_secret_keeper.setAdapter(secretKeeperIconAdapter);
     }

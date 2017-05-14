@@ -27,6 +27,10 @@ public class EncryptionHelper {
     // the length of file header
     public static final int fileHeaderLen = 30;
 
+    // is encryption or decryption busy ?
+    public static boolean encryptState = false;
+    public static boolean decryptState = false;
+
     /**
      * get file header from encrypted data.
      * @param filePath
