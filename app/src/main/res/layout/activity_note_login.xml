@@ -68,10 +68,16 @@
 
             <Button
                 android:text="@string/forget"
+                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/forget" />
 
+            <Button
+                android:text="@string/recover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recover" />
         </LinearLayout>
     </RelativeLayout>
 

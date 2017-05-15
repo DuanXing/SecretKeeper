@@ -41,6 +41,7 @@
     <string name="inputPass">请输入密码！</string>
     <string name="login">进入</string>
     <string name="forget">找回密码</string>
+    <string name="recover">初始化</string>
     <string name="error">密码错误</string>
     <string name="noteFirst">第一次使用秘密记，请先注册...</string>
     <string name="setQuestion">设置密码提示问题</string>
@@ -66,6 +67,12 @@
     <string name="save">保存</string>
     <string name="title">标题</string>
     <string name="content">内容</string>
+    <string name="QAinvalid">问答未填写完整！</string>
+    <string name="PDinvalid">两次密码输入不一致！</string>
+    <string name="noPD1">密码1 未填写！</string>
+    <string name="noPD2">密码2 未填写！</string>
+    <string name="registerSuccess">注册信息成功</string>
+    <string name="passwordError">密码错误</string>
 
     <!-- About -->
     <string name="aboutContent">\t\t该软件提供了包括AES、DES、DESede等常见对称加密算法，并在Android系统下实现了国产SM4分组对称加密算法，支持对文件进行加密解密。加密文件时提供多种算法支持，解密文件时自动识别文件加密方式，并进行解密。\n\t\t除了文件加解密功能，该软件还提供了用户隐私信息保险箱---秘密记，用户可将个人的一些隐私信息记录在里面，输入密码方能查看，用户隐私信息均进行加密后存储于数据库。文件的md5值计算功能，可用于文件校验。</string>
