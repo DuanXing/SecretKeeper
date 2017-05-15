@@ -13,7 +13,7 @@
 
     <ListView
         android:id="@+id/list"
-        android:background="#3900"
+        android:background="#606365"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/lineLayout"

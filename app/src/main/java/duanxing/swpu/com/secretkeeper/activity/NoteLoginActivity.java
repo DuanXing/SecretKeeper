@@ -3,6 +3,7 @@ package duanxing.swpu.com.secretkeeper.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import javax.crypto.Cipher;
+
 import duanxing.swpu.com.secretkeeper.R;
+import duanxing.swpu.com.secretkeeper.utils.DatabaseCipher;
 import duanxing.swpu.com.secretkeeper.utils.DatabaseHelper;
 
 public class NoteLoginActivity extends BaseActivity {
@@ -22,6 +26,8 @@ public class NoteLoginActivity extends BaseActivity {
 
     private AlertDialog alertDialog;
     private AlertDialog.Builder builder;
+
+    private boolean needSelectAll = false;
 
     @Override
     protected void loadViewLayout() {
@@ -53,7 +59,48 @@ public class NoteLoginActivity extends BaseActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String strPd = ed_password.getText().toString();
+                if("".equals(strPd)) {
+                    txt_hint.setText(getResources().getString(R.string.inputPass));
+                    return;
+                }
 
+                // encrypt password
+                DatabaseCipher databaseCipher = new DatabaseCipher(Cipher.ENCRYPT_MODE);
+                strPd = databaseCipher.doFinal(strPd);
+
+                // get password from database
+                DatabaseHelper databaseHelper = new DatabaseHelper(NoteLoginActivity.this);
+                SQLiteDatabase db = databaseHelper.getReadableDatabase();
+                Cursor cursor = db.query(DatabaseHelper.TB_USER, new String[] {DatabaseHelper.USER_KEY_PD}, "id=?", new String[] {"1"}, null, null, null);
+                if(cursor.getCount() > 0) {
+                    cursor.moveToFirst();
+                    String str = cursor.getString(0);
+                    if(str.equals(strPd)) {
+                        finish();
+                        enterActivity(NoteListActivity.class);
+                    }
+                    else {
+                        txt_hint.setText(getResources().getString(R.string.error));
+                        needSelectAll = true;
+                    }
+                }
+                else {
+                    txt_hint.setText(getResources().getString(R.string.dbError));
+                    needSelectAll = true;
+                }
+
+                db.close();
+            }
+        });
+
+        ed_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(needSelectAll) {
+                    ed_password.selectAll();
+                    needSelectAll = false;
+                }
             }
         });
 

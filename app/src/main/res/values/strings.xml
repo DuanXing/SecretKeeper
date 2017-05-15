@@ -43,6 +43,7 @@
     <string name="forget">找回密码</string>
     <string name="recover">初始化</string>
     <string name="error">密码错误</string>
+    <string name="dbError">无注册用户。未注册？请反馈</string>
     <string name="noteFirst">第一次使用秘密记，请先注册...</string>
     <string name="setQuestion">设置密码提示问题</string>
     <string name="question1">问题1: </string>

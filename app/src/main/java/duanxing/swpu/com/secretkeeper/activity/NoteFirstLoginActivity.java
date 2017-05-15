@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import javax.crypto.Cipher;
+
 import duanxing.swpu.com.secretkeeper.R;
+import duanxing.swpu.com.secretkeeper.utils.DatabaseCipher;
 import duanxing.swpu.com.secretkeeper.utils.DatabaseHelper;
 
 public class NoteFirstLoginActivity extends BaseActivity {
@@ -100,15 +103,16 @@ public class NoteFirstLoginActivity extends BaseActivity {
 //                Log.i(TAG, "db file path: " + db.getPath());
 
                 // insert user info
+                DatabaseCipher databaseCipher = new DatabaseCipher(Cipher.ENCRYPT_MODE);
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(DatabaseHelper.USER_KEY_NAME, DatabaseHelper.USER_VALUE_NAME);
-                contentValues.put(DatabaseHelper.USER_KEY_Q1, strQ1);
-                contentValues.put(DatabaseHelper.USER_KEY_Q2, strQ2);
-                contentValues.put(DatabaseHelper.USER_KEY_Q3, strQ3);
-                contentValues.put(DatabaseHelper.USER_KEY_A1, strA1);
-                contentValues.put(DatabaseHelper.USER_KEY_A2, strA2);
-                contentValues.put(DatabaseHelper.USER_KEY_A3, strA3);
-                contentValues.put(DatabaseHelper.USER_KEY_PD, strPd1);
+                contentValues.put(DatabaseHelper.USER_KEY_NAME, databaseCipher.doFinal(DatabaseHelper.USER_VALUE_NAME));
+                contentValues.put(DatabaseHelper.USER_KEY_Q1, databaseCipher.doFinal(strQ1));
+                contentValues.put(DatabaseHelper.USER_KEY_Q2, databaseCipher.doFinal(strQ2));
+                contentValues.put(DatabaseHelper.USER_KEY_Q3, databaseCipher.doFinal(strQ3));
+                contentValues.put(DatabaseHelper.USER_KEY_A1, databaseCipher.doFinal(strA1));
+                contentValues.put(DatabaseHelper.USER_KEY_A2, databaseCipher.doFinal(strA2));
+                contentValues.put(DatabaseHelper.USER_KEY_A3, databaseCipher.doFinal(strA3));
+                contentValues.put(DatabaseHelper.USER_KEY_PD, databaseCipher.doFinal(strPd1));
                 db.insert(DatabaseHelper.TB_USER, null, contentValues);
 
                 db.close();
