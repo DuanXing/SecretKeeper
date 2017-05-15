@@ -63,10 +63,10 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:gravity="top"
                 android:background="#FFFFFF"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPersonName"
                 android:ems="100"
                 android:id="@+id/ed_content" />
         </LinearLayout>

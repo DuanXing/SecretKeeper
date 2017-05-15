@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class NoteItemAdapter extends BaseAdapter {
     private Context context;
 
     private List<NoteItem> items;
+
+    public static boolean showCheckbox = false;
 
     public NoteItemAdapter(Context context) {
         this.context = context;
@@ -52,18 +55,29 @@ public class NoteItemAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.txt_title = (TextView) convertView.findViewById(R.id.txt_title);
             holder.txt_content = (TextView) convertView.findViewById(R.id.txt_content);
+            holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkbox);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
+            if(showCheckbox) {
+                holder.checkBox.setVisibility(CheckBox.VISIBLE);
+            }
+            else {
+                holder.checkBox.setVisibility(CheckBox.INVISIBLE);
+                holder.checkBox.setChecked(false);
+            }
         }
+        holder.id = items.get(position).getId();
         holder.txt_title.setText(items.get(position).getTitle());
         holder.txt_content.setText(items.get(position).getContent());
 
         return convertView;
     }
 
-    static class ViewHolder {
-        TextView txt_title;
-        TextView txt_content;
+    public final class ViewHolder {
+        public int id;
+        public TextView txt_title;
+        public TextView txt_content;
+        public CheckBox checkBox;
     }
 }

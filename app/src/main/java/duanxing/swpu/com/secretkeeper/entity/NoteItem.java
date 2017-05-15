@@ -5,15 +5,21 @@ package duanxing.swpu.com.secretkeeper.entity;
  */
 
 public class NoteItem {
+    private int id;
     private String title;
     private String content;
 
-    public NoteItem() {
+    private NoteItem() {
     }
 
-    public NoteItem(String t, String c) {
+    public NoteItem(int i, String t, String c) {
+        this.id = i;
         this.title = t;
         this.content = c;
+    }
+
+    public int getId () {
+        return id;
     }
 
     public String getTitle() {
@@ -22,6 +28,10 @@ public class NoteItem {
 
     public String getContent() {
         return content;
+    }
+
+    public void setId(int i) {
+        this.id = i;
     }
 
     public void setTitle(String t) {
