@@ -54,8 +54,10 @@ public class MainActivity extends BaseActivity {
                         enterActivity(MD5CalculateActivity.class);
                         break;
                     case R.mipmap.iv_icon_5:
+                        enterActivity(IntroductionActivity.class);
                         break;
                     case R.mipmap.iv_icon_6:
+                        enterActivity(AboutActivity.class);
                         break;
                     default:
                         break;
@@ -82,7 +84,7 @@ public class MainActivity extends BaseActivity {
         icons.add(new MyIcon(R.mipmap.iv_icon_2, getResources().getString(R.string.decrypt)));
         icons.add(new MyIcon(R.mipmap.iv_icon_3, getResources().getString(R.string.note)));
         icons.add(new MyIcon(R.mipmap.iv_icon_4, getResources().getString(R.string.hash)));
-        icons.add(new MyIcon(R.mipmap.iv_icon_5, getResources().getString(R.string.aboutEncryption)));
+        icons.add(new MyIcon(R.mipmap.iv_icon_5, getResources().getString(R.string.introduction)));
         icons.add(new MyIcon(R.mipmap.iv_icon_6, getResources().getString(R.string.about)));
         secretKeeperIconAdapter.setIcons(icons);
         grid_secret_keeper.setAdapter(secretKeeperIconAdapter);
