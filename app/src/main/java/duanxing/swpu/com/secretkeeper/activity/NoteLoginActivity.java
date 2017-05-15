@@ -52,7 +52,8 @@ public class NoteLoginActivity extends BaseActivity {
         btn_forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
+                enterActivity(GetBackPasswordActivity.class);
             }
         });
 

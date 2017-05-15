@@ -37,7 +37,8 @@
         <activity android:name=".activity.NoteListActivity" />
         <activity android:name=".activity.NoteEditActivity" />
         <activity android:name=".activity.AboutActivity" />
-        <activity android:name=".activity.IntroductionActivity"></activity>
+        <activity android:name=".activity.IntroductionActivity" />
+        <activity android:name=".activity.GetBackPasswordActivity"></activity>
     </application>
 
 </manifest>

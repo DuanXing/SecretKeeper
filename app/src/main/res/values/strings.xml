@@ -55,7 +55,11 @@
     <string name="setPass">设置密码</string>
     <string name="inputPassword">输入密码: </string>
     <string name="inputPassword2">再次确认: </string>
+    <string name="newPassword">新密码: </string>
     <string name="register">确认</string>
+    <string name="pleaseAnswer">请回答以下问题</string>
+    <string name="ensure">确定</string>
+    <string name="answerError">回答错误</string>
 
     <!-- MD5 calculate -->
     <string name="calculate">计算MD5</string>
@@ -74,6 +78,7 @@
     <string name="noPD2">密码2 未填写！</string>
     <string name="registerSuccess">注册信息成功</string>
     <string name="passwordError">密码错误</string>
+    <string name="getPdSuccess">密码修改成功</string>
 
     <!-- About -->
     <string name="aboutContent">\t\t该软件提供了包括AES、DES、DESede等常见对称加密算法，并在Android系统下实现了国产SM4分组对称加密算法，支持对文件进行加密解密。加密文件时提供多种算法支持，解密文件时自动识别文件加密方式，并进行解密。\n\t\t除了文件加解密功能，该软件还提供了用户隐私信息保险箱---秘密记，用户可将个人的一些隐私信息记录在里面，输入密码方能查看，用户隐私信息均进行加密后存储于数据库。文件的md5值计算功能，可用于文件校验。</string>
