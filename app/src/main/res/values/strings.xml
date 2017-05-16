@@ -81,6 +81,7 @@
     <string name="getPdSuccess">密码修改成功</string>
     <string name="noTitle">标题未填写！</string>
     <string name="noContent">内容未填写！</string>
+    <string name="saved">保存成功</string>
 
     <!-- About -->
     <string name="aboutContent">\t\t该软件提供了包括AES、DES、DESede等常见对称加密算法，并在Android系统下实现了国产SM4分组对称加密算法，支持对文件进行加密解密。加密文件时提供多种算法支持，解密文件时自动识别文件加密方式，并进行解密。\n\t\t除了文件加解密功能，该软件还提供了用户隐私信息保险箱---秘密记，用户可将个人的一些隐私信息记录在里面，输入密码方能查看，用户隐私信息均进行加密后存储于数据库。文件的md5值计算功能，可用于文件校验。</string>

@@ -259,7 +259,6 @@ public class FileEncryptionActivity extends BaseActivity {
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)  {
         // TODO Auto-generated method stub

@@ -1,6 +1,9 @@
 package duanxing.swpu.com.secretkeeper.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,14 +12,17 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.crypto.Cipher;
 
 import duanxing.swpu.com.secretkeeper.Adapter.NoteItemAdapter;
 import duanxing.swpu.com.secretkeeper.Adapter.NoteItemAdapter.ViewHolder;
 import duanxing.swpu.com.secretkeeper.R;
 import duanxing.swpu.com.secretkeeper.entity.NoteItem;
+import duanxing.swpu.com.secretkeeper.utils.DatabaseCipher;
+import duanxing.swpu.com.secretkeeper.utils.DatabaseHelper;
 
 public class NoteListActivity extends BaseActivity {
     private Button btn_add;
@@ -29,6 +35,11 @@ public class NoteListActivity extends BaseActivity {
     private HashMap<Integer, Boolean> checkedIdsMap = new HashMap<>();
 
     private static final String TAG = "NoteListActivity";
+    public static int NOTE_EDIT_RESULT = 9;
+
+    private String strTitleSelect;
+    private String strContentSelect;
+    private int iIdSelect;
 
     @Override
     protected void loadViewLayout() {
@@ -49,7 +60,7 @@ public class NoteListActivity extends BaseActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enterActivity(NoteEditActivity.class);
+                enterActivity(NoteEditActivity.class, true);
             }
         });
 
@@ -61,17 +72,20 @@ public class NoteListActivity extends BaseActivity {
                     return;
                 }
 
+                DatabaseHelper helper = new DatabaseHelper(NoteListActivity.this);
+                SQLiteDatabase db = helper.getWritableDatabase();
+
                 for (Object o : checkedIdsMap.entrySet()) {
                     Map.Entry entry = (Map.Entry) o;
                     Integer i = (Integer) entry.getKey();
                     Boolean b = (Boolean) entry.getValue();
                     if (b) {
-                        // TODO delete database value
+                        db.delete(DatabaseHelper.TB_NOTE, DatabaseHelper.NOTE_KEY_ID + "=?", new String[] {String.valueOf(i)});
                         Log.i(TAG, "delete " + i);
                     }
                 }
 
-                refreshListview();
+                refreshListView();
             }
         });
 
@@ -84,7 +98,11 @@ public class NoteListActivity extends BaseActivity {
                     checkedIdsMap.put(viewHolder.id, viewHolder.checkBox.isChecked());
                 }
                 else {
-                    // TODO enter NoteEditActivity
+                    ViewHolder viewHolder = (ViewHolder) view.getTag();
+                    iIdSelect = viewHolder.id;
+                    strTitleSelect = viewHolder.txt_title.getText().toString();
+                    strContentSelect = viewHolder.txt_content.getText().toString();
+                    enterActivity(NoteEditActivity.class, false);
                 }
             }
         });
@@ -95,7 +113,7 @@ public class NoteListActivity extends BaseActivity {
                 if(!NoteItemAdapter.showCheckbox) {
                     NoteItemAdapter.showCheckbox = true;
                     noteItemAdapter.notifyDataSetChanged();
-                    
+
                     ViewHolder viewHolder = (ViewHolder) view.getTag();
                     viewHolder.checkBox.toggle();
                     checkedIdsMap.put(viewHolder.id, viewHolder.checkBox.isChecked());
@@ -109,13 +127,31 @@ public class NoteListActivity extends BaseActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)  {
+        if(resultCode == NOTE_EDIT_RESULT) {
+            refreshListView();
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     protected void processLogic() {
 
     }
 
-    private void enterActivity(Class<?> cls) {
+    private void enterActivity(Class<?> cls, boolean isAdd) {
         Intent intent = new Intent(NoteListActivity.this, cls);
-        startActivity(intent);
+        if(isAdd) {
+            intent.putExtra("isNew", true);
+        }
+        else {
+            intent.putExtra("isNew", false);
+            intent.putExtra("title", strTitleSelect);
+            intent.putExtra("content", strContentSelect);
+            intent.putExtra("id", iIdSelect);
+        }
+        startActivityForResult(intent, 1);
     }
 
     private void initAdapter() {
@@ -123,28 +159,41 @@ public class NoteListActivity extends BaseActivity {
             noteItemAdapter = new NoteItemAdapter(NoteListActivity.this);
         }
 
-        // TODO get notes from database
-        noteItems.add(new NoteItem(1, "标题", "文本"));
-        noteItems.add(new NoteItem(2, "标题", "文本"));
-        noteItems.add(new NoteItem(3, "标题", "文本"));
+        getNotesFromDb();
 
         noteItemAdapter.setItems(noteItems);
         lst_notes.setAdapter(noteItemAdapter);
     }
 
-    private void refreshListview() {
+    private void refreshListView() {
         NoteItemAdapter.showCheckbox = false;
-        noteItemAdapter.notifyDataSetChanged();
         checkedIdsMap.clear();
         noteItems.clear();
 
-        // TODO get notes from database
-        noteItems.add(new NoteItem(1, "标题", "文本"));
-        noteItems.add(new NoteItem(2, "标题", "文本"));
-        noteItems.add(new NoteItem(3, "标题", "文本"));
+        getNotesFromDb();
 
         noteItemAdapter.setItems(noteItems);
-        lst_notes.setAdapter(noteItemAdapter);
+        noteItemAdapter.notifyDataSetChanged();
+    }
+
+    private void getNotesFromDb() {
+        DatabaseCipher cipher = new DatabaseCipher(Cipher.DECRYPT_MODE);
+        DatabaseHelper helper = new DatabaseHelper(NoteListActivity.this);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor cursor = db.query(DatabaseHelper.TB_NOTE, new String[] {DatabaseHelper.NOTE_KEY_ID, DatabaseHelper.NOTE_KEY_TITLE, DatabaseHelper.NOTE_KEY_CONTENT},
+                null, null, null, null, null);
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            do {
+                int i = cursor.getInt(0);
+                String strT = cursor.getString(1);
+                String strC = cursor.getString(2);
+                noteItems.add(new NoteItem(i, cipher.doFinal(strT), cipher.doFinal(strC)));
+            }while(cursor.moveToNext());
+        }
+
+        db.close();
     }
 
     @Override
