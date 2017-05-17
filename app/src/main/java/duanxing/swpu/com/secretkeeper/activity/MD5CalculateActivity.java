@@ -33,6 +33,7 @@ public class MD5CalculateActivity extends BaseActivity {
     private static final int MSG_MD5_BUSY = 0;
     private static final int MSG_MD5_FREE = 1;
     private static final int MSG_MD5_VALUE = 2;
+    private static final int MSG_MD5_NOINPUT = 3;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -52,6 +53,8 @@ public class MD5CalculateActivity extends BaseActivity {
                     break;
                 case MSG_MD5_VALUE:
                     txt_md5Value.setText((String)message.obj);
+                    break;
+                case MSG_MD5_NOINPUT:
                     break;
                 default:
                     break;
@@ -87,13 +90,19 @@ public class MD5CalculateActivity extends BaseActivity {
             public void onClick(View v) {
                 ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(txt_md5Value.getText());
-                Toast.makeText(getApplicationContext(), "复制成功", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.copySuccess), Toast.LENGTH_LONG).show();
             }
         });
 
         btn_calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String filePath = ed_filePath.getText().toString();
+                if("".equals(filePath)) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.noInput), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -101,7 +110,7 @@ public class MD5CalculateActivity extends BaseActivity {
                         mMsg.what = MSG_MD5_BUSY;
                         mHandler.sendMessage(mMsg);
 
-                        String md5Value = Md5Calculate.getMd5OfFile(ed_filePath.getText().toString());
+                        String md5Value = Md5Calculate.getMd5OfFile(filePath);
                         mMsg = Message.obtain();
                         mMsg.obj = md5Value;
                         mMsg.what = MSG_MD5_VALUE;

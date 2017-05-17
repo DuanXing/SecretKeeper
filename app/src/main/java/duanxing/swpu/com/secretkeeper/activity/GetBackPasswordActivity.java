@@ -3,6 +3,8 @@ package duanxing.swpu.com.secretkeeper.activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -89,6 +91,10 @@ public class GetBackPasswordActivity extends BaseActivity {
                     txt_hint.setText(getResources().getString(R.string.PDinvalid));
                     return;
                 }
+                if(strPd1.length() < 8) {
+                    txt_hint.setText(getResources().getString(R.string.pdLenError));
+                    return;
+                }
 
                 DatabaseHelper dbHelper = new DatabaseHelper(GetBackPasswordActivity.this);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -99,13 +105,17 @@ public class GetBackPasswordActivity extends BaseActivity {
                 contentValues.put(DatabaseHelper.USER_KEY_PD, databaseCipher.doFinal(strPd1));
 
                 // update value in database
-                db.update(DatabaseHelper.TB_USER, contentValues, DatabaseHelper.USER_KEY_NAME + "=?", new String[]{DatabaseHelper.USER_VALUE_NAME});
+                int i = db.update(DatabaseHelper.TB_USER, contentValues, DatabaseHelper.USER_KEY_NAME + "=?", new String[]{databaseCipher.doFinal(DatabaseHelper.USER_VALUE_NAME)});
+                if(i > 0) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.getPdSuccess), Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.getPdFailed), Toast.LENGTH_LONG).show();
+                }
 
                 db.close();
 
                 finish();
-
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.getPdSuccess), Toast.LENGTH_LONG).show();
             }
         });
     }

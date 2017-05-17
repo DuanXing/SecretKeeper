@@ -43,7 +43,10 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:inputType="textPassword"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345678_@.,"
+                    android:maxLength="16"
                     android:ems="10"
                     android:id="@+id/password"
                     android:layout_weight="1" />

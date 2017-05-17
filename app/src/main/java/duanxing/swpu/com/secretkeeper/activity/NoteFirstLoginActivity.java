@@ -3,6 +3,8 @@ package duanxing.swpu.com.secretkeeper.activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -95,6 +97,10 @@ public class NoteFirstLoginActivity extends BaseActivity {
                 }
                 if(!strPd1.equals(strPd2)) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.PDinvalid), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strPd1.length() < 8) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.pdLenError), Toast.LENGTH_LONG).show();
                     return;
                 }
 
