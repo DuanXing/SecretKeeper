@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.crypto.Cipher;
 
 import duanxing.swpu.com.secretkeeper.R;
@@ -27,6 +30,7 @@ public class NoteFirstLoginActivity extends BaseActivity {
     private EditText ed_a3;
     private EditText ed_pd1;
     private EditText ed_pd2;
+    private EditText ed_mail;
 
     private static final String TAG = "NoteFirstLoginActivity";
 
@@ -46,6 +50,7 @@ public class NoteFirstLoginActivity extends BaseActivity {
         ed_a3 = (EditText) findViewById(R.id.ed_answer3);
         ed_pd1 = (EditText) findViewById(R.id.ed_inputPass);
         ed_pd2 = (EditText) findViewById(R.id.ed_inputPass2);
+        ed_mail = (EditText) findViewById(R.id.ed_email);
     }
 
     @Override
@@ -85,6 +90,12 @@ public class NoteFirstLoginActivity extends BaseActivity {
                     return;
                 }
 
+                String strEmail = ed_mail.getText().toString();
+                if("".equals(strEmail) || !isEmail(strEmail)) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.emailInvalid), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 String strPd1 = ed_pd1.getText().toString();
                 if("".equals(strPd1)) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.noPD1), Toast.LENGTH_LONG).show();
@@ -112,6 +123,7 @@ public class NoteFirstLoginActivity extends BaseActivity {
                 DatabaseCipher databaseCipher = new DatabaseCipher(Cipher.ENCRYPT_MODE);
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(DatabaseHelper.USER_KEY_NAME, databaseCipher.doFinal(DatabaseHelper.USER_VALUE_NAME));
+                contentValues.put(DatabaseHelper.USER_KEY_EMAIL, databaseCipher.doFinal(strEmail));
                 contentValues.put(DatabaseHelper.USER_KEY_Q1, databaseCipher.doFinal(strQ1));
                 contentValues.put(DatabaseHelper.USER_KEY_Q2, databaseCipher.doFinal(strQ2));
                 contentValues.put(DatabaseHelper.USER_KEY_Q3, databaseCipher.doFinal(strQ3));
@@ -137,6 +149,19 @@ public class NoteFirstLoginActivity extends BaseActivity {
     private void enterActivity(Class<?> cls) {
         Intent intent = new Intent(NoteFirstLoginActivity.this, cls);
         startActivity(intent);
+    }
+
+    /**
+     * 判断邮箱是否合法
+     * @param email
+     * @return
+     */
+    public static boolean isEmail(String email){
+        if (null==email || "".equals(email)) return false;
+        //Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}"); //简单匹配
+        Pattern p =  Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
+        Matcher m = p.matcher(email);
+        return m.matches();
     }
 
     @Override

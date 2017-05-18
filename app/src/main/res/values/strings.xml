@@ -86,6 +86,14 @@
     <string name="noContent">内容未填写！</string>
     <string name="saved">保存成功</string>
     <string name="pdLenError">密码长度最短为8，最长为16！</string>
+    <string name="setEmail">设置邮箱</string>
+    <string name="emailInvalid">邮箱地址不规范</string>
+    <string name="inputVerifyCode">请输入6位数验证码：</string>
+    <string name="sendEmailHint">验证码将发送到您的注册邮箱</string>
+    <string name="sendCodeHint">发送验证码</string>
+    <string name="changePassword"><u>使用邮箱验证码更改密码</u></string>
+    <string name="backHint">初始化秘密记</string>
+    <string name="invalidCode">未输入验证码</string>
 
     <!-- About -->
     <string name="aboutContent">\t\t该软件提供了包括AES、DES、DESede等常见对称加密算法，并在Android系统下实现了国产SM4分组对称加密算法，支持对文件进行加密解密。加密文件时提供多种算法支持，解密文件时自动识别文件加密方式，并进行解密。\n\t\t除了文件加解密功能，该软件还提供了用户隐私信息保险箱---秘密记，用户可将个人的一些隐私信息记录在里面，输入密码方能查看，用户隐私信息均进行加密后存储于数据库。文件的md5值计算功能，可用于文件校验。</string>

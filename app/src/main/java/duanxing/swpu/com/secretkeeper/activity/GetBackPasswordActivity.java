@@ -1,8 +1,10 @@
 package duanxing.swpu.com.secretkeeper.activity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -28,6 +30,7 @@ public class GetBackPasswordActivity extends BaseActivity {
     private EditText ed_pd1;
     private EditText ed_pd2;
     private Button btn_ensure;
+    private TextView txt_link;
 
     private String answer1;
     private String answer2;
@@ -50,12 +53,22 @@ public class GetBackPasswordActivity extends BaseActivity {
         btn_ensure = (Button) findViewById(R.id.ensure);
         ed_pd1 = (EditText) findViewById(R.id.ed_pd1);
         ed_pd2 = (EditText) findViewById(R.id.ed_pd2);
+        txt_link = (TextView) findViewById(R.id.txt_link);
 
         initQuestion();
     }
 
     @Override
     protected void setListener() {
+        txt_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txt_link.setTextColor(Color.parseColor("#303F9F"));
+                finish();
+                enterActivity(VerifyToChangePDActivity.class);
+            }
+        });
+
         btn_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +136,11 @@ public class GetBackPasswordActivity extends BaseActivity {
     @Override
     protected void processLogic() {
 
+    }
+
+    private void enterActivity(Class<?> cls) {
+        Intent intent = new Intent(GetBackPasswordActivity.this, cls);
+        startActivity(intent);
     }
 
     /**

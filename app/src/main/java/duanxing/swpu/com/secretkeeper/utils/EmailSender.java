@@ -1,8 +1,11 @@
 package duanxing.swpu.com.secretkeeper.utils;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import javax.crypto.Cipher;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -18,6 +21,7 @@ import java.util.Random;
 
 public class EmailSender extends AsyncTask{
     public static int verifyCode = 0;
+    private String toEmail;
     private static final String TAG = "EmailSender";
     private static final String SMTPHOST = "smtp.163.com";
     private static final String EMAILNAME = "";
@@ -27,9 +31,11 @@ public class EmailSender extends AsyncTask{
     @Override
     protected Object doInBackground(Object[] params) {
         generateCode();
+        getEmailFromDb();
+        Log.i(TAG, "toEmail: " + toEmail);
 
         try {
-            sendEmail("duanxing93@qq.com", "SecretKeeper 验证码", "您此次操作的验证码是： " + String.valueOf(verifyCode));
+            sendEmail(toEmail, "SecretKeeper Code", "Verify Code： " + String.valueOf(verifyCode));
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Exception");
@@ -38,6 +44,9 @@ public class EmailSender extends AsyncTask{
         return null;
     }
 
+    /**
+     * 产生验证码
+     */
     private void generateCode() {
         verifyCode = 0;
 
@@ -49,6 +58,26 @@ public class EmailSender extends AsyncTask{
             else
                 verifyCode = verifyCode * 10 + random.nextInt(9);
         }
+    }
+
+    private void getEmailFromDb() {
+        // encrypt password
+        DatabaseCipher databaseCipher = new DatabaseCipher(Cipher.DECRYPT_MODE);
+
+        // get password from database
+        DatabaseHelper databaseHelper = new DatabaseHelper(ContextHolder.getAppContext());
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        Cursor cursor = db.query(DatabaseHelper.TB_USER, new String[] {DatabaseHelper.USER_KEY_EMAIL}, "id=?", new String[] {"1"}, null, null, null);
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String str = cursor.getString(0);
+            toEmail = databaseCipher.doFinal(str);
+        }
+        else {
+            Log.e(TAG, "Get email address from database failed.");
+        }
+
+        db.close();
     }
 
     public static void sendEmail(String toEmail, String subject, String content) throws Exception {

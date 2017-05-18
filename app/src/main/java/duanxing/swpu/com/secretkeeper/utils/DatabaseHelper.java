@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String USER_KEY_NAME = "name";
     public static final String USER_VALUE_NAME = "SecretKeeper";
     public static final String USER_KEY_PD = "password";
+    public static final String USER_KEY_EMAIL = "email";
     public static final String USER_KEY_Q1 = "question1";
     public static final String USER_KEY_Q2 = "question2";
     public static final String USER_KEY_Q3 = "question3";
@@ -102,8 +103,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         // create table user
         String sql = "create table " + TB_USER + "(" + USER_KEY_ID + " integer primary key autoincrement, " + USER_KEY_NAME + " text, " + USER_KEY_PD
-                + " text, " + USER_KEY_Q1 + " text, " + USER_KEY_Q2 + " text, " + USER_KEY_Q3 + " text, " + USER_KEY_A1 + " text, " + USER_KEY_A2
-                + " text, " + USER_KEY_A3 + " text)";
+                + " text, " + USER_KEY_EMAIL + " text, " + USER_KEY_Q1 + " text, " + USER_KEY_Q2 + " text, " + USER_KEY_Q3 + " text, " + USER_KEY_A1
+                + " text, " + USER_KEY_A2 + " text, " + USER_KEY_A3 + " text)";
         db.execSQL(sql);
 
         // create table note

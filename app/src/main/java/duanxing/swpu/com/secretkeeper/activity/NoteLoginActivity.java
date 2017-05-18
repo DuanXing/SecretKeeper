@@ -1,7 +1,5 @@
 package duanxing.swpu.com.secretkeeper.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,14 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import javax.crypto.Cipher;
 
 import duanxing.swpu.com.secretkeeper.R;
 import duanxing.swpu.com.secretkeeper.utils.DatabaseCipher;
 import duanxing.swpu.com.secretkeeper.utils.DatabaseHelper;
-import duanxing.swpu.com.secretkeeper.utils.EmailSender;
 
 public class NoteLoginActivity extends BaseActivity {
     private Button btn_login;
@@ -24,9 +20,6 @@ public class NoteLoginActivity extends BaseActivity {
     private Button btn_recover;
     private EditText ed_password;
     private TextView txt_hint;
-
-    private AlertDialog alertDialog;
-    private AlertDialog.Builder builder;
 
     private boolean needSelectAll = false;
 
@@ -109,25 +102,8 @@ public class NoteLoginActivity extends BaseActivity {
         btn_recover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                builder = new AlertDialog.Builder(NoteLoginActivity.this);
-                alertDialog = builder.setMessage("这是一个危险的操作，将丢失所有的已记录信息！")
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        })
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                DatabaseHelper.deleteDatabase();
-
-                                Toast.makeText(NoteLoginActivity.this, "初始化成功！", Toast.LENGTH_SHORT).show();
-
-                                // finish this activity
-                                finish();
-                            }
-                        }).create();
-                alertDialog.show();
+                finish();
+                enterActivity(VerifyCodeDialogActivity.class);
             }
         });
     }

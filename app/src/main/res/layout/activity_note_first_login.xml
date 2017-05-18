@@ -160,6 +160,20 @@
             </LinearLayout>
 
             <TextView
+                android:text="@string/setEmail"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="textEmailAddress"
+                android:ems="20"
+                android:id="@+id/ed_email" />
+
+            <TextView
                 android:text="@string/setPass"
                 android:textStyle="bold"
                 android:layout_width="match_parent"

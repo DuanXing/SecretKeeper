@@ -13,6 +13,7 @@ import java.util.List;
 import duanxing.swpu.com.secretkeeper.Adapter.SecretKeeperIconAdapter;
 import duanxing.swpu.com.secretkeeper.R;
 import duanxing.swpu.com.secretkeeper.entity.MyIcon;
+import duanxing.swpu.com.secretkeeper.utils.ContextHolder;
 import duanxing.swpu.com.secretkeeper.utils.DatabaseHelper;
 
 public class MainActivity extends BaseActivity {
@@ -31,6 +32,9 @@ public class MainActivity extends BaseActivity {
     protected void initSubView() {
         grid_secret_keeper = (GridView) findViewById(R.id.grid_secret_keeper);
         initAdapter();
+
+        // init contextHolder
+        ContextHolder.init(getApplicationContext());
     }
 
     @Override

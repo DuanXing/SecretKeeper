@@ -38,7 +38,9 @@
         <activity android:name=".activity.NoteEditActivity" />
         <activity android:name=".activity.AboutActivity" />
         <activity android:name=".activity.IntroductionActivity" />
-        <activity android:name=".activity.GetBackPasswordActivity"></activity>
+        <activity android:name=".activity.GetBackPasswordActivity" />
+        <activity android:name=".activity.VerifyCodeDialogActivity" />
+        <activity android:name=".activity.VerifyToChangePDActivity"></activity>
     </application>
 
 </manifest>
