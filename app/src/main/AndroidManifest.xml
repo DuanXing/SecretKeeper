@@ -12,6 +12,9 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -28,9 +31,6 @@
         </activity>
         <activity android:name=".activity.FileEncryptionActivity" />
         <activity android:name=".activity.FileDecryptionActivity" />
-        <activity
-            android:name=".NoteLoginActivity"
-            android:label="@string/title_activity_note_login" />
         <activity android:name=".activity.NoteLoginActivity" />
         <activity android:name=".activity.NoteFirstLoginActivity" />
         <activity android:name=".activity.MD5CalculateActivity" />

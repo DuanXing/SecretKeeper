@@ -16,6 +16,7 @@ import javax.crypto.Cipher;
 import duanxing.swpu.com.secretkeeper.R;
 import duanxing.swpu.com.secretkeeper.utils.DatabaseCipher;
 import duanxing.swpu.com.secretkeeper.utils.DatabaseHelper;
+import duanxing.swpu.com.secretkeeper.utils.EmailSender;
 
 public class NoteLoginActivity extends BaseActivity {
     private Button btn_login;

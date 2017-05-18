@@ -8,6 +8,7 @@
     <string name="hash">md5计算</string>
     <string name="introduction">功能详解</string>
     <string name="about">关于</string>
+    <string name="exitHint">再次点击返回键退出程序</string>
 
     <!-- Cipher -->
     <string name="typeChoose">点击选择文件</string>
@@ -88,6 +89,7 @@
 
     <!-- About -->
     <string name="aboutContent">\t\t该软件提供了包括AES、DES、DESede等常见对称加密算法，并在Android系统下实现了国产SM4分组对称加密算法，支持对文件进行加密解密。加密文件时提供多种算法支持，解密文件时自动识别文件加密方式，并进行解密。\n\t\t除了文件加解密功能，该软件还提供了用户隐私信息保险箱---秘密记，用户可将个人的一些隐私信息记录在里面，输入密码方能查看，用户隐私信息均进行加密后存储于数据库。文件的md5值计算功能，可用于文件校验。</string>
+    <string name="school">SWPU</string>
     <string name="author">Xing Duan</string>
     <string name="email">375243742@qq.com</string>
 
@@ -100,4 +102,8 @@
     <string name="intro2content">\t\t\t\t解密功能，用于解密经该软件的加密过的文件。文件解密时，软件会通过文件头读取自动判断文件的加密方式,对识别成功的文件可进行解密,解密文件生成在原始文件同目录下，可选择输入解密生成文件的名字，若不输入，系统自动生成文件名。</string>
     <string name="intro3content">\t\t\t\t秘密记，是给用户存放个人隐私的地方，比如用户的各种账号密码、秘密、重要记事等。在用户第一次使用的时候需要进行个人信息注册，包括密码设置和三个密码提示问答，密码提示问答用于找回密码，所以请务必牢记。用户注册后即可使用秘密记的所有功能了，以后进入秘密记输入设置的密码就可以直接进入，用户的个人信息与秘密信息等全部使用了AES加密然后存储于数据库。</string>
     <string name="intro4content">\t\t\t\tmd5计算功能，应用于文件校验。使用md5计算，为文件生成唯一的"指纹"，通过比较两个文件的md5可判断文件是否一致，是否被篡改过。现在比较多的网站发布文件都会附带发布文件的md5值，用户获取到文件后可对文件进行md5校验，判断文件是否为原版文件。</string>
+
+    <!-- EmailSender -->
+    <string name="verifyCodeHint">您此次操作的验证码是： </string>
+    <string name="emailTitle">SecretKeeper 验证码</string>
 </resources>

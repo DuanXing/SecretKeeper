@@ -1,9 +1,11 @@
 package duanxing.swpu.com.secretkeeper.activity;
 
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ import duanxing.swpu.com.secretkeeper.entity.MyIcon;
 import duanxing.swpu.com.secretkeeper.utils.DatabaseHelper;
 
 public class MainActivity extends BaseActivity {
+    private long firstTime = 0;
 
     private GridView grid_secret_keeper;
     private List<MyIcon> icons = new ArrayList<>();
@@ -76,6 +79,28 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void processLogic() {
 
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                long secondTime = System.currentTimeMillis();
+                if(secondTime - firstTime > 2000) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.exitHint), Toast.LENGTH_LONG).show();
+                    firstTime = secondTime;
+
+                    return true;
+                }
+                else {
+                    System.exit(0);
+                }
+                break;
+            default:
+                break;
+        }
+
+        return onKeyUp(keyCode, event);
     }
 
     private void initAdapter() {
