@@ -3,6 +3,7 @@ package duanxing.swpu.com.secretkeeper.activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ public class NoteLoginActivity extends BaseActivity {
     private int errorTimes = 0;
 
     private boolean needSelectAll = false;
+    private static final String TAG = "NoteLoginActivity";
 
     @Override
     protected void loadViewLayout() {
@@ -67,7 +69,7 @@ public class NoteLoginActivity extends BaseActivity {
                 int now[] = new int[6];
                 Calendar calendar = Calendar.getInstance();
                 now[0] = calendar.get(Calendar.YEAR);
-                now[1] = calendar.get(Calendar.MONTH);
+                now[1] = calendar.get(Calendar.MONTH) + 1;
                 now[2] = calendar.get(Calendar.DAY_OF_MONTH);
                 now[3] = calendar.get(Calendar.HOUR_OF_DAY);
                 now[4] = calendar.get(Calendar.MINUTE);
@@ -77,6 +79,12 @@ public class NoteLoginActivity extends BaseActivity {
                     return;
                 }
                 if(!isDateBeforeNow(date, now)) {
+                    Log.i(TAG, "month:" + now[0]);
+                    Log.i(TAG, "month:" + now[1]);
+                    Log.i(TAG, "month:" + now[2]);
+                    Log.i(TAG, "month:" + now[3]);
+                    Log.i(TAG, "month:" + now[4]);
+                    Log.i(TAG, "month:" + now[5]);
                     txt_hint.setText("您的账号将在 " + date[0] + "年" + date[1] + "月" + date[2] + "日 " + date[3] + ":" + date[4] + ":" + date[5] + " 后解锁!");
                     return;
                 }
@@ -155,20 +163,43 @@ public class NoteLoginActivity extends BaseActivity {
         if(date[0] > now[0]) {
             return false;
         }
+        else if (date[0] < now[0]) {
+            return true;
+        }
+
         if(date[1] > now[1]) {
             return false;
         }
+        else if (date[1] < now[1]) {
+            return true;
+        }
+
         if(date[2] > now[2]) {
             return false;
         }
+        else if (date[2] < now[2]) {
+            return true;
+        }
+
         if(date[3] > now[3]) {
             return false;
         }
+        else if (date[3] < now[3]) {
+            return true;
+        }
+
         if(date[4] > now[4]) {
             return false;
         }
+        else if (date[4] < now[4]) {
+            return true;
+        }
+
         if(date[5] > now[5]) {
             return false;
+        }
+        else if (date[5] < now[5]) {
+            return true;
         }
 
         return true;

@@ -212,7 +212,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.USER_KEY_ERRORTIMES, 0);
         contentValues.put(DatabaseHelper.USER_KEY_YEAR, calendar.get(Calendar.YEAR));
-        contentValues.put(DatabaseHelper.USER_KEY_MONTH, calendar.get(Calendar.MONTH));
+        contentValues.put(DatabaseHelper.USER_KEY_MONTH, calendar.get(Calendar.MONTH) + 1);
         contentValues.put(DatabaseHelper.USER_KEY_DAY, calendar.get(Calendar.DAY_OF_MONTH));
         contentValues.put(DatabaseHelper.USER_KEY_HOUR, calendar.get(Calendar.HOUR_OF_DAY));
         contentValues.put(DatabaseHelper.USER_KEY_MINUTE, calendar.get(Calendar.MINUTE));
@@ -244,7 +244,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.USER_KEY_ERRORTIMES, 0);
         contentValues.put(DatabaseHelper.USER_KEY_YEAR, calendar.get(Calendar.YEAR));
-        contentValues.put(DatabaseHelper.USER_KEY_MONTH, calendar.get(Calendar.MONTH));
+        contentValues.put(DatabaseHelper.USER_KEY_MONTH, calendar.get(Calendar.MONTH) + 1);
         contentValues.put(DatabaseHelper.USER_KEY_DAY, calendar.get(Calendar.DAY_OF_MONTH) + 1);
         contentValues.put(DatabaseHelper.USER_KEY_HOUR, calendar.get(Calendar.HOUR_OF_DAY));
         contentValues.put(DatabaseHelper.USER_KEY_MINUTE, calendar.get(Calendar.MINUTE));
