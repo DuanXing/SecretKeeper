@@ -58,6 +58,7 @@ public class EmailSender extends AsyncTask{
             else
                 verifyCode = verifyCode * 10 + random.nextInt(9);
         }
+        Log.i(TAG, "verifyCode : " + verifyCode);
     }
 
     private void getEmailFromDb() {

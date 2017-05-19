@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -131,6 +132,16 @@ public class NoteFirstLoginActivity extends BaseActivity {
                 contentValues.put(DatabaseHelper.USER_KEY_A2, databaseCipher.doFinal(strA2));
                 contentValues.put(DatabaseHelper.USER_KEY_A3, databaseCipher.doFinal(strA3));
                 contentValues.put(DatabaseHelper.USER_KEY_PD, databaseCipher.doFinal(strPd1));
+                contentValues.put(DatabaseHelper.USER_KEY_ERRORTIMES, 0);
+
+                Calendar calendar = Calendar.getInstance();
+                contentValues.put(DatabaseHelper.USER_KEY_YEAR, calendar.get(Calendar.YEAR));
+                contentValues.put(DatabaseHelper.USER_KEY_MONTH, calendar.get(Calendar.MONTH));
+                contentValues.put(DatabaseHelper.USER_KEY_DAY, calendar.get(Calendar.DAY_OF_MONTH));
+                contentValues.put(DatabaseHelper.USER_KEY_HOUR, calendar.get(Calendar.HOUR_OF_DAY));
+                contentValues.put(DatabaseHelper.USER_KEY_MINUTE, calendar.get(Calendar.MINUTE));
+                contentValues.put(DatabaseHelper.USER_KEY_SECOND, calendar.get(Calendar.SECOND));
+
                 db.insert(DatabaseHelper.TB_USER, null, contentValues);
 
                 db.close();

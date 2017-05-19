@@ -159,11 +159,7 @@ public class FileDecryptionActivity extends BaseActivity {
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        // make button un clickable
-                        Message mMsg = Message.obtain();
-                        mMsg.what = MSG_DECRYPT_BUSY;
-                        mHandler.sendMessage(mMsg);
-
+                        Message  mMsg = null;
                         // make the decryption
                         BaseEncryption decryption = null;
                         switch (encrypt_method) {
@@ -187,6 +183,11 @@ public class FileDecryptionActivity extends BaseActivity {
                             default:
                                 break;
                         }
+
+                        // make button un clickable
+                        mMsg = Message.obtain();
+                        mMsg.what = MSG_DECRYPT_BUSY;
+                        mHandler.sendMessage(mMsg);
 
                         // decrypt
                         if(null != decryption) {
