@@ -36,6 +36,9 @@
     <string name="decrypting">正在解密...</string>
     <string name="title_activity_note_login">Sign in</string>
     <string name="chooseCipher">选择加密方式:</string>
+    <string name="needDelete"> 成功后删除原文件</string>
+    <string name="srcDeleteFailed">原文件删除失败</string>
+    <string name="srcDeleteSuccess">原文件删除成功</string>
 
     <!-- Login -->
     <string name="welcome">欢迎使用秘密记...</string>

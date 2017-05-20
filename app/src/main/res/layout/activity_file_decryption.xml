@@ -23,6 +23,7 @@
         android:id="@+id/file_path"
         android:focusable="false"
         android:hint="@string/srcFile"
+        android:maxLines="1"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -36,11 +37,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/txtHint"
-        android:text=" 提示:\n 1. 解密文件将生成在选择文件的同目录下\n 2. 如果没输入文件保存名字，软件将自动生成文件名： 时间戳_原始文件名\n"
-        android:textColor="#AA0000"
-        android:textSize="18dp"
+    <CheckBox
+        android:id="@+id/ckBox_delete"
+        android:text="@string/needDelete"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -48,6 +47,15 @@
     <EditText
         android:id="@+id/outFileName"
         android:hint="@string/outFile"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtHint"
+        android:text=" 提示:\n 1. 解密文件将生成在选择文件的同目录下\n 2. 如果没输入文件保存名字，软件将自动生成文件名： 时间戳_原始文件名\n"
+        android:textColor="#AA0000"
+        android:textSize="18dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

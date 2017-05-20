@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.Log;
 
 import java.io.File;
 
@@ -17,6 +18,8 @@ import java.io.File;
  * the tool class of file
  */
 public class FileUtil {
+    private static final String TAG = "FileUtil";
+
     /**
      * Get file absolute path by uri
      * @param uri
@@ -73,6 +76,26 @@ public class FileUtil {
             }
         }
         catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * delete file
+     * @param filePath
+     * @return true if success, else false.
+     */
+    public static boolean deleteFile(final String filePath) {
+        try {
+            File file = new File(filePath);
+            if(!file.delete()) {
+                return false;
+            }
+        }
+        catch (Exception e) {
+            Log.e(TAG, "file delete failed.");
             return false;
         }
 

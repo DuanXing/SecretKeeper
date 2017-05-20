@@ -8,6 +8,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -50,12 +51,15 @@ public class FileEncryptionActivity extends BaseActivity {
     private RadioGroup btnGp_encrypt_method;
     private RadioButton btnDefault_checked;
     private Button btn_encrypt;
-    private EditText txtView_out_name;
+    private EditText etTxt_out_name;
     private ProgressBar progressBar;
+    private CheckBox ckBox;
 
     // string path
     private String selectFilePath;
     private String savePath;
+    private String saveFileName;
+    private boolean needSelectAll = false;
 
     // deal the message of thread.
     private Handler mHandler = new Handler() {
@@ -67,6 +71,14 @@ public class FileEncryptionActivity extends BaseActivity {
                     break;
                 case MSG_ENCRYPT_SUCCESS:
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptSuccess), Toast.LENGTH_LONG).show();
+                    if(ckBox.isChecked()) {
+                        if(FileUtil.deleteFile(selectFilePath)) {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.srcDeleteSuccess), Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.srcDeleteFailed), Toast.LENGTH_LONG).show();
+                        }
+                    }
                     break;
                 case MSG_ENCRYPT_INIT_FAILED:
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.encryptInitFailed), Toast.LENGTH_LONG).show();
@@ -75,12 +87,16 @@ public class FileEncryptionActivity extends BaseActivity {
                     EncryptionHelper.encryptState = true;
                     progressBar.setAlpha(1);
                     btn_encrypt.setEnabled(false);
+                    ckBox.setEnabled(false);
+                    etTxt_out_name.setEnabled(false);
                     btn_encrypt.setText(getResources().getString(R.string.encrypting));
                     break;
                 case MSG_ENCRYPT_FREE:
                     EncryptionHelper.encryptState = false;
                     progressBar.setAlpha(0);
                     btn_encrypt.setEnabled(true);
+                    ckBox.setEnabled(true);
+                    etTxt_out_name.setEnabled(true);
                     btn_encrypt.setText(getResources().getString(R.string.encrypt));
                     break;
                 default:
@@ -96,19 +112,22 @@ public class FileEncryptionActivity extends BaseActivity {
 
     @Override
     protected void initSubView() {
-        txtView_out_name = (EditText) findViewById(R.id.outFileName);
+        etTxt_out_name = (EditText) findViewById(R.id.outFileName);
         btn_select_file = (Button) findViewById(R.id.select_file);
         etTxt_file_path = (EditText) findViewById(R.id.file_path);
         btnGp_encrypt_method = (RadioGroup) findViewById(R.id.encrypt_method);
         btn_encrypt = (Button) findViewById(R.id.start_encrypt);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnDefault_checked = (RadioButton) findViewById(R.id.aesRadioBtn);
+        ckBox = (CheckBox) findViewById(R.id.ckBox_delete);
         btnDefault_checked.setChecked(true);
         progressBar.setAlpha(0);
 
         if(EncryptionHelper.encryptState) {
             progressBar.setAlpha(1);
             btn_encrypt.setEnabled(false);
+            ckBox.setEnabled(false);
+            etTxt_out_name.setEnabled(false);
             btn_encrypt.setText(getResources().getString(R.string.encrypting));
         }
     }
@@ -163,7 +182,7 @@ public class FileEncryptionActivity extends BaseActivity {
                 int index = selectFilePath.lastIndexOf('/');
                 savePath = selectFilePath.substring(0, index+1);
                 String fileName = selectFilePath.substring(index+1);
-                String outName = txtView_out_name.getText().toString();
+                String outName = etTxt_out_name.getText().toString();
                 if(!"".equals(outName)) {
                     savePath += outName;
                 } else {
@@ -252,6 +271,16 @@ public class FileEncryptionActivity extends BaseActivity {
                 thread.start();
             }
         });
+
+        etTxt_out_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(needSelectAll) {
+                    etTxt_out_name.selectAll();
+                    needSelectAll = false;
+                }
+            }
+        });
     }
 
     @Override
@@ -275,6 +304,13 @@ public class FileEncryptionActivity extends BaseActivity {
             if (uri.getPath() != null) {
                 etTxt_file_path.setText(realPath);
             }
+
+            // auto fill out file name
+            int index = realPath.lastIndexOf('/');
+            saveFileName = realPath.substring(index + 1);
+            saveFileName = FileUtil.getTimeStamp() + "_" + saveFileName;
+            etTxt_out_name.setText(saveFileName);
+            needSelectAll = true;
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

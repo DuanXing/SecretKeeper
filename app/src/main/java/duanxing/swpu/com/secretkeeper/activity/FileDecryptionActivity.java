@@ -8,6 +8,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class FileDecryptionActivity extends BaseActivity {
     private EditText etTxt_out_name;
     private TextView txtView_encryption_hint;
     private ProgressBar progressBar;
+    private CheckBox ckBox;
 
     // default encryption
     private ENCRYPTION_METHOD encrypt_method = ENCRYPTION_METHOD.AES_ENCRYPT;
@@ -52,7 +54,9 @@ public class FileDecryptionActivity extends BaseActivity {
     private static final int FILE_SELECT_CODE = 0;
     private static final String TAG = "FileDecryptionActivity";
 
+    private boolean needSelectAll = false;
     private String selectFilePath;
+    private String saveFileName;
     private String savePath;
 
     // deal the message of thread.
@@ -65,6 +69,14 @@ public class FileDecryptionActivity extends BaseActivity {
                     break;
                 case MSG_DECRYPT_SUCCESS:
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptSuccess), Toast.LENGTH_LONG).show();
+                    if(ckBox.isChecked()) {
+                        if(FileUtil.deleteFile(selectFilePath)) {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.srcDeleteSuccess), Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.srcDeleteFailed), Toast.LENGTH_LONG).show();
+                        }
+                    }
                     break;
                 case MSG_DECRYPT_INIT_FAILED:
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.decryptInitFailed), Toast.LENGTH_LONG).show();
@@ -76,12 +88,16 @@ public class FileDecryptionActivity extends BaseActivity {
                     EncryptionHelper.decryptState = true;
                     progressBar.setAlpha(1);
                     btn_decrypt.setEnabled(false);
+                    ckBox.setEnabled(false);
+                    etTxt_out_name.setEnabled(false);
                     btn_decrypt.setText(getResources().getString(R.string.decrypting));
                     break;
                 case MSG_DECRYPT_FREE:
                     EncryptionHelper.decryptState = false;
                     progressBar.setAlpha(0);
                     btn_decrypt.setEnabled(true);
+                    ckBox.setEnabled(true);
+                    etTxt_out_name.setEnabled(true);
                     btn_decrypt.setText(getResources().getString(R.string.decrypt));
                     Log.i(TAG, "DE   FREE");
                     break;
@@ -104,11 +120,14 @@ public class FileDecryptionActivity extends BaseActivity {
         btn_decrypt = (Button) findViewById(R.id.start_decrypt);
         txtView_encryption_hint = (TextView) findViewById(R.id.encryptHint);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        ckBox = (CheckBox) findViewById(R.id.ckBox_delete);
         progressBar.setAlpha(0);
 
         if(EncryptionHelper.decryptState) {
             progressBar.setAlpha(1);
             btn_decrypt.setEnabled(false);
+            ckBox.setEnabled(false);
+            etTxt_out_name.setEnabled(false);
             btn_decrypt.setText(getResources().getString(R.string.decrypting));
         }
     }
@@ -230,6 +249,16 @@ public class FileDecryptionActivity extends BaseActivity {
                 thread.start();
             }
         });
+
+        etTxt_out_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(needSelectAll) {
+                    etTxt_out_name.selectAll();
+                    needSelectAll = false;
+                }
+            }
+        });
     }
 
     @Override
@@ -253,6 +282,13 @@ public class FileDecryptionActivity extends BaseActivity {
             if (uri.getPath() != null) {
                 etTxt_file_path.setText(realPath);
             }
+
+            // auto fill out file name
+            int index = realPath.lastIndexOf('/');
+            saveFileName = realPath.substring(index + 1);
+            saveFileName = FileUtil.getTimeStamp() + "_" + saveFileName;
+            etTxt_out_name.setText(saveFileName);
+            needSelectAll = true;
 
             // judge fileHeader.
             String fileHeader = EncryptionHelper.getFileHeader(realPath);
