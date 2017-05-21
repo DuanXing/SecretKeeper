@@ -6,6 +6,7 @@ package duanxing.swpu.com.secretkeeper.utils;
 
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
@@ -56,5 +57,53 @@ public class EncryptionHelper {
         }
 
         return strFileHeader;
+    }
+
+    /**
+     * judge the file is encrypted by SM4 ?
+     * @param filePath
+     * @return
+     */
+    public static final boolean isSM4File(final String filePath) {
+        try {
+            File file = new File(filePath);
+
+            long len = file.length();
+            if(14 != len % 16) {
+                return false;
+            }
+
+            long skipLen = len - 16;
+
+            InputStream inFile = new FileInputStream(filePath);
+            inFile.skip(skipLen);
+
+            byte[] srcBuf = new byte[16];
+            byte[] buffer = new byte[16];
+            inFile.read(srcBuf, 0, 16);
+            inFile.close();
+
+            SM4Encryption sm4Encryption = new SM4Encryption(null, null, BaseEncryption.OP_CIPHER_MODE.BASE_DECRYPT_MODE);
+            sm4Encryption.init();
+            sm4Encryption.singleDecrypt(srcBuf, 16, buffer);
+
+            byte extraData = buffer[15];
+            // extraData belong [0, 16]
+            if(extraData > 16) {
+                return false;
+            }
+
+            for(int i = 0;i < extraData;++i) {
+                if(extraData != buffer[15 - i]) {
+                    return false;
+                }
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 }

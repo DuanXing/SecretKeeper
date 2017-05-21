@@ -212,6 +212,11 @@ public class SM4Encryption extends BaseEncryption{
         }
     }
 
+    // 提供给外部的单组数据加密接口
+    public void singleDecrypt(byte[] in, int inLen, byte[] out) {
+        doDecrypt(in, inLen, out);
+    }
+
     @Override
     public boolean init() {
         // TODO initialized = true
@@ -256,6 +261,11 @@ public class SM4Encryption extends BaseEncryption{
                 // 读到了文件末尾了
                 if(0 != len % BLOCK_SIZE) {
                     extraData = (16 - (len % 16));
+
+                    // 数据填充
+                    for(int i = 0;i < extraData;++i) {
+                        fileCache[len + i] = (byte) extraData;
+                    }
                 }
 
                 doEncrypt(fileCache, len + extraData, out);
@@ -264,10 +274,15 @@ public class SM4Encryption extends BaseEncryption{
                 outFile.flush();
             }
 
-            // 追加一个字节到文件末尾，记录是否有多余的字节填充
-            out[0] = (byte)extraData;
-            outFile.write(out, 0, 1);
-            outFile.flush();
+            // 如果数据刚好为16的整数倍，那么追加16字节填充
+            if(0 == extraData) {
+                for(int i = 0;i < BLOCK_SIZE;++i) {
+                    out[i] = 16;
+                }
+
+                outFile.write(out, 0, BLOCK_SIZE);
+                outFile.flush();
+            }
 
             inFile.close();
             outFile.close();
@@ -332,21 +347,16 @@ public class SM4Encryption extends BaseEncryption{
                     firstWrite = false;
                 }
 
-                // 处理最后一组数据
-                // 读到了文件的最后一字节:多余字节数
-                if(0 != (len % BLOCK_SIZE)) {
-                    doDecrypt(fileCache, len - 1, out);
-
-                    outFile.write(out, 0, len - 1 - fileCache[len - 1]);
-                    outFile.flush();
-
-                    break;
-                }
-
                 doDecrypt(fileCache, len, out);
 
                 frontLen = len;
             }
+
+            // 处理最后一组带填充的数据
+            byte extraLen = out[frontLen - 1];
+            outFile.write(out, 0, frontLen - extraLen);
+            outFile.flush();
+
             inFile.close();
             outFile.close();
 

@@ -305,8 +305,14 @@ public class FileDecryptionActivity extends BaseActivity {
                 encrypt_method = ENCRYPTION_METHOD.DESEDE_ENCRYPT;
             }
             else if(EncryptionHelper.SM4_FILE_HEADER.equals(fileHeader)) {
-                txtView_encryption_hint.setText(getResources().getString(R.string.encrypt_method_sm4));
-                encrypt_method = ENCRYPTION_METHOD.SM4_ENCRYPT;
+                if(EncryptionHelper.isSM4File(realPath)) {
+                    txtView_encryption_hint.setText(getResources().getString(R.string.encrypt_method_sm4));
+                    encrypt_method = ENCRYPTION_METHOD.SM4_ENCRYPT;
+                }
+                else {
+                    txtView_encryption_hint.setText(getResources().getString(R.string.encrypt_method_none));
+                    encrypt_method = ENCRYPTION_METHOD.NONE;
+                }
             }
             else {
                 txtView_encryption_hint.setText(getResources().getString(R.string.encrypt_method_none));
